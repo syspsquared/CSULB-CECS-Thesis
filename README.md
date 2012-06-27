@@ -1,4 +1,4 @@
 CSULB-CECS-Thesis
 =================
 
-Graduate These on Lab Management
+Graduate Thesis on Lab Management
