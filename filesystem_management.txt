@@ -1,0 +1,22 @@
+Title: File System Management
+
+Summary: How to handle saving files persistently and how to clear tmp files.
+
+Background:
+-Students and faculty need to be able to save files for later. 
+
+How to:
+-Central file servers.
+-Automounter
+-quotas
+-Samba shares to printservers
+-Removing local files (/tmp on linux and local profiles on macs)
+-Generating and clearing windows profiles
+-backups (optional, detail d*BU and schedule)
+-Student pen drives and external storage (optional, students downloading a ton)
+
+Issues:
+-nfs locking
+-samba issues (fake oplocks, cpu speed, etc)
+-network requirement.
+-space considerations (be wary allowing things to get more than half full)
