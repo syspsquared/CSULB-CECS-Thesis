@@ -1,0 +1,17 @@
+Title: Cross Platform Considerations
+
+Summary: detail considerations for getting windows, linux, and macs to play nice with eachother.
+
+Background:
+-Necessary to stay competetive.
+-Extremely annoying due to different companies doing completely different things.
+
+How to: (Some of this is optional if I have time)
+-centralized user accounts (Brain)
+-centralized file systems (d*)
+-Account management (search)
+
+-Crossplatform software (dreamweaver,eclipse,derby,etc.)
+
+Issues:
+-Issues are many and varied. Try not to go into an angry apple rant.

@@ -1,0 +1,7 @@
+Title: Unclogging the lab machines. 
+
+Summary: What the students may leave behind and how to clear it.
+
+How to:
+-killing zombie processes.
+-rebooting (

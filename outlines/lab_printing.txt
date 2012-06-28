@@ -1,0 +1,19 @@
+Title: Lab Paper Management
+
+Background:
+-quotas necessary.
+-need a central printer.
+
+How to:
+-setup paper on client machines.
+-prmaster user and group.
+Optional:
+-description of Source code description of paperd, paper, mpaper, and modpaper.
+   -Check prmaster
+-printserver filtering.
+-Setup of lpr.
+
+Problems:
+-Students can still unplug the printer as usb does not use authentication.
+-Doesn't prevent students from tampering with the printer.
+-issues with printing to postscript. (gtk issue)

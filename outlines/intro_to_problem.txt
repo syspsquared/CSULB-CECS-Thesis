@@ -1,0 +1,11 @@
+Title: Introduction: The Problem
+
+Summary: Why we're doing this. 
+
+-Student oriented labs.
+-Limited faculty testing (usually week before semester starts)
+-Multiple labs with hundreds of machines.
+-Different operating systems and distros require different needs.
+-Many pieces of software to maintain and frequent software updates.
+-limited staff. 
+-Staff and faculty turn over. 
