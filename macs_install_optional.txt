@@ -1,8 +1,0 @@
-
-summary: If I have time, detail procedures and processes for the mac labs. 
-
-
-https://discussions.apple.com/thread/3202584?start=30&tstart=0
-http://forums.macrumors.com/archive/index.php/t-1188443.html
-http://techierambles.blogspot.com/2011/08/network-accounts-are-unavailable-when.html
-
