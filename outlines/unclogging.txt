@@ -1,7 +1,9 @@
 Title: Unclogging the lab machines. 
 
-Summary: What the students may leave behind and how to clear it.
+Summary: What the students may leave behind and how to clear it. Also, how to prevent students from rendering machines inoperable.
 
 How to:
+-Limit amount of space students can write to. (/tmp and /var/tmp for example)
+-limit number of processes spawned. 
 -killing zombie processes, unfudging the terminal, using a cleanup script, etc.
 -rebooting (the easiest solution)

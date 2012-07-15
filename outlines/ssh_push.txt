@@ -1,13 +1,15 @@
 Section: ssh push
 
-summary: how to push commands and periodic updates to lab machines.
+Summary: how to push commands and periodic updates to lab machines.
 
-background:
+Background:
 -rsh
 -ssh instead for security
 
 How to:
 -keying the systems
+  -keygen
+  -root authorized keys
 -host key issue
 
 Considerations:
