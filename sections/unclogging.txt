@@ -1,0 +1,8 @@
+Sometimes restricting privileges on lab machines isn't enough to prevent students from clogging the machines. If not locked down sufficiently, students can potentially cause headache to system administrators. Often, the students are not even malicious. They could simply be doing assignments that have the potential to overload the lab machines.
+
+For example, in an operating systems course, students must learn how to properly create, fork, kill, and end processes. As with any programming, practice is needed to properly learn a new programming technique and many mistakes will be made along the way with each program run. With operating systems concepts, 
+
+-too many pids
+-too much resources
+-too many sockets or ports used for networks. 
+
