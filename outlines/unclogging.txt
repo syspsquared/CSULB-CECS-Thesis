@@ -7,3 +7,4 @@ How to:
 -limit number of processes spawned. 
 -killing zombie processes, unfudging the terminal, using a cleanup script, etc.
 -rebooting (the easiest solution)
+-fsck solution.
