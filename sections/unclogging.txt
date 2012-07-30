@@ -6,11 +6,9 @@ To prevent this, steps need to be taken to limit what a student can do. For exam
 
 In addition to PIDs, students can still clog the machine by using too much CPU, memory, or disk space. CPU and memory can both be limited by editing kernel parameters by user (by default, they are unlimited). Disk space can be limited by setting a quota on home directories. However, users may still be able to write to temp directories and fill those up, so it is also useful to mount those directories from separate partitions of limited size. Temp directories may still be important for operating system performance, so a cronjob to delete excess temp files may be necessary. In the case of CECS labs, each machine can be reimaged within 10-15 minutes, so it may be simpler from an administration perspective to just let the students use the full resources of lab machines (minus administrative privileges) to use in programming. 
 
-For many of these issues, the answer is simple: schedule a reboot every night. This will clear all orphaned processes, interrupt any processes that could be using resources and reset the environment.  
+For many of these issues, the answer is simple: schedule a reboot every night. This will clear all orphaned processes, interrupt any processes that could be using resources, and reset the environment. This is very simple to do: make an entry in root's crontab. The reboots should take place in the middle of the night during less used hours to prevent loss of work. 
 
--Too many orphaned processes
--reboot
+This may create a few issues on some Linux distributions though. On Ubuntu, the file system can get somewhat dirty after a few weeks and on reboot will mount the file system read-only if it detects errors. To prevent this, force an fsck (file system check) after every reboot. Delayed login mode is required for this though, but since students are prevented from manually rebooting the machines, this won't affect much. It also helps that the reboots take place at night. 
 
+Verbose mode is also very helpful for troubleshooting machines quickly (especially while classes are in session). A splash screen is nice when trying to hide confusing output from non-technical users, but in a room full of computer science students, this really isn't necessary. 
 
-
--too many sockets or ports used for networks. (optional)
