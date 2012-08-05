@@ -16,6 +16,7 @@ Because a password prompt never occurs, ssh can be used to run a command immedia
 Thus, a relatively short script can be written to send commands to all participating servers. 
 
 
+
 -loop through systems
 -complications with hanging processes
 
