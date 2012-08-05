@@ -9,4 +9,13 @@ As of this writing, the most common protocol used is Secure Shell (SSH). SSH fun
 
 An ssh session begins by establishing a connection and then exchanging host keys. SSH authentication usually comes in two ways: username/password or authorized keys. Username/password prompts function the same as telnet and are thus not very useful for pushing out commands to a lab.
 
-For the purposes of pushing out remote commands, authorized keys are used. Keys come in pairs: public keys and private keys. Each user can generate a key pair using the ssh-keygen command. 
+For the purposes of pushing out remote commands, authorized keys are used. Keys come in pairs: public keys and private keys. Each user can generate a key pair using the "ssh-keygen command". To authenticate with keys instead of passwords, your generated private key should be kept in a ".ssh/" directory of your user account. Pushed your matching public key out to systems you want to access in the same directory of a user on that machine. For example, if you push your public key out to root's home directory on a system, you will be able to login as root on that system without a password. Furthermore, due to the key length, it is much more difficult to brute force a private key than it is a password, and dictionary attacks are practically worthless in this context. 
+
+Because a password prompt never occurs, ssh can be used to run a command immediately after authentication. With the use of semicolons and other special shell characters, multiple commands can be run. Hypothetically, a command to download a script from a webserver can be followed by the command to run that script. 
+
+Thus, a relatively short script can be written to send commands to all participating servers. 
+
+
+-loop through systems
+-complications with hanging processes
+

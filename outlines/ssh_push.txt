@@ -10,8 +10,9 @@ How to:
 -keying the systems
   -keygen
   -root authorized keys
--host key issue
+-script that commands the systems (loop, and optionally forks)
 
 Considerations:
 -periodic check
-
+-complications with hanging processes
+-host key issue

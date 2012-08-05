@@ -3,4 +3,11 @@ Title: Student and Faculty Help
 Summary: how students can get help from us such as mailing support and using config utils. 
 
 Background:
+-reasons
 
+How to:
+-tech email and forwarding to tech shop
+-Alternative, ticketing system and why that doesn't work here.
+-website with faq and instructions
+-fix utils world readable
+-website and email on the front of every machine, and why it goes ignored.
