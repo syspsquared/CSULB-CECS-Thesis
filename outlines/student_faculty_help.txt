@@ -6,8 +6,8 @@ Background:
 -reasons
 
 How to:
--tech email and forwarding to tech shop
--Alternative, ticketing system and why that doesn't work here.
--website with faq and instructions
--fix utils world readable
+-tech email and forwarding to tech shop.
+*-Alternative, ticketing system and why that doesn't work here. (faculty want simplicity and will override anything by bitching to the dept chair/dean)
+-website with faq and instructions.
+*-fix utils world readable and executable. 
 -website and email on the front of every machine, and why it goes ignored.
