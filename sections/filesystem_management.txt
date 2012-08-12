@@ -1,0 +1,8 @@
+Often in a lab environment, particularly an educational one, users will benefit from having persistent storage so that they can work day to day. 
+
+File storage has become less important in recent years than it was back before storage became commercially cheap. Nowadays, flashdrives that can hold many gigabytes of data can be bought for less than 1 dollar per GB. In addition, with the advent of cloud storage services, many companies are offering free storage online. Backups are also becoming less important due to 
+-code repos for backups and skydrive
+
+For network storage, central file servers are the most common way to go. Some implementations use distributed storage across an entire lab's hard drives. This method requires a number of security and redundancy considerations and should only be considered support staff are able to maintain it. 
+
+-Client machines
