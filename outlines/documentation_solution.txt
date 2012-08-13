@@ -12,3 +12,7 @@ What's in there:
 -system patch notes
 -general system notes
 -any supporting docs or web links to get more info.
+
+Alternatives:
+-wiki and what it requires, webserver, configuration etc.
+-Revisioning such as git and what it requires.
