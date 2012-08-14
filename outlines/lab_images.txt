@@ -1,3 +1,31 @@
 Title: Main Lab Images
 
 Note: This will be a fairly large section. Detail stuff from install_master.
+
+Overview on what should be in there (do last)
+
+How to (some may be references to other sections):
+-Booting from cd and doing barebones install.
+-Setting up root or admin (dummy workaround).
+-setting up networking.
+-Master package (repository) list and installation. Then removal of uneeded (cups), and autoremove.
+-Manual package (source or binaries) installation.(drjava,derby)
+-Text only login (init 3 or removing gdm.con)
+-REF:Automount (may be a reference to filesystem management)
+-Groups
+-REF: Mail
+-Disable student control (ctrl-alt-del, menu shutdown, yp tools, )
+-Powersaving
+-system logs and optionally log forwarding for audit purposes.
+-REF: ssh host and authorized keys
+-REF: Printing (should also include paper compiled commands)
+-REF: support commands local
+-Restrict access (hosts.allow,deny,cron.deny,expired shells should go here as well). Note the alternative, iptables for firewalling the outside. Also note that ideally you'd want to be behind a master firewall (corporate)
+-ntp (time)
+-Bootloader setup (lilo.conf). Also note the linked kernel.
+-REF: rebooting to cleanup. (and include crontab)
+-Login scripts (set hostname, check space, alter environment, etc)
+-motd
+-Miscellaneus tweaks (firefox,pine/alpine(describe general because this happens often),gtk printing,eclipse printing,jetty,ctrl-alt-bksp,pmount,pumount) 
+-Considerations for different hardware architectures (64 bit compiles,manual
+driver install)  

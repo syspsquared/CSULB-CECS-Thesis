@@ -13,10 +13,7 @@ For the purposes of pushing out remote commands, authorized keys are used. Keys 
 
 Because a password prompt never occurs, ssh can be used to run a command immediately after authentication. With the use of semicolons and other special shell characters, multiple commands can be run. Hypothetically, a command to download a script from a webserver can be followed by the command to run that script. 
 
-Thus, a relatively short script can be written to send commands to all participating servers. 
+Thus, a relatively short script can be written to send commands to all participating servers. In its simplest form, all this script does is loop through a list of hosts (usually in a file) and execute the ssh command on each host. In some shells, the loop may malfunction if ssh isn't run in batch mode (null standard in), so care must be taken to remember that argument if using such a shell (sh, bash, etc.). 
 
-
-
--loop through systems
--complications with hanging processes
+A more advanced script would fork each ssh command to the background to run commands on hosts in parallel. This has the potential to overload the push server (which given its nature is most likely a fairly old machine), so adding a delay after so many forked commands would help if the cpu is being taxed too much. A fair amount of cpu cycles are used to negotiate the key exchange and encrypt the traffic. The other issues that may occur are hosts that hang the ssh session. This will cause the ssh command process to hang until killed. Sometimes it can only be killed with signal 9. If hosts don't seem to be doing this often, this may be fine to overlook and kill them manually after the script is run (log the malfunctioning systems and investigate them of course). To remedy this, at the end of the script, sleep for a reasonable amount of time then kill all (with the "killall" command) ssh sessions. 
 

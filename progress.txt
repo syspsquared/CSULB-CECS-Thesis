@@ -1,0 +1,19 @@
+Todo:
+-formatting to tex or failing that, to M$ word (I would be ashamed...)
+-Table of contents: has to wait until after the master outline done.
+-The appendix with all the hard instructions and scripts.
+
+Progress of sections:
+-unclogging: Ready for review.
+-documentation solution: Ready for review.
+-ssh push: Ready for review.
+-Student faculty help: nearly finished, need section on barefoot specifics.
+-filesystem management: in progress.
+-Lab printing: just started. 
+
+Progress of Outlines:
+-More or less finished (will obviously mod or change up as needed)
+-Still need install_master outline but that must be done last since its sections depend on the others. 
+
+Progress of Research:
+-Still need to look up notes on local_repository even if not doing.
