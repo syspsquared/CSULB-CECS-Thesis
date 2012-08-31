@@ -10,6 +10,7 @@ Progress of sections:
 -Student faculty help: nearly finished, need section on barefoot specifics.
 -filesystem management: in progress.
 -Lab printing: just started. 
+-printservers: just added. Necessary to finish the thoughts on lab printing.
 
 Progress of Outlines:
 -More or less finished (will obviously mod or change up as needed)

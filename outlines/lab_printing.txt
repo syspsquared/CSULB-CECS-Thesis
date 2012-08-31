@@ -17,3 +17,5 @@ Problems:
 -Students can still unplug the printer as usb does not use authentication.
 -Doesn't prevent students from tampering with the printer.
 -issues with printing to postscript. (gtk issue)
+
+-Cost issues. Ink versus paper and campus solution.

@@ -10,6 +10,7 @@ How to:
 -Automounter
 -quotas
 -Samba shares to printservers
+-making changes to all home dirs with no_root_squash
 -Removing local files (/tmp on linux and local profiles on macs)
 -Generating and clearing windows profiles (optional)
 -backups (optional, detail d*BU and schedule)

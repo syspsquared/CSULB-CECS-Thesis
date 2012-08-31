@@ -1,8 +1,21 @@
 Often in a lab environment, particularly an educational one, users will benefit from having persistent storage so that they can work day to day. 
 
-File storage has become less important in recent years than it was back before storage became commercially cheap. Nowadays, flashdrives that can hold many gigabytes of data can be bought for less than 1 dollar per GB. In addition, with the advent of cloud storage services, many companies are offering free storage online. Backups are also becoming less important due to 
--code repos for backups and skydrive
+File storage has become less important in recent years than it was back before
+storage became commercially cheap. Nowadays, flashdrives that can hold many
+gigabytes of data can be bought for less than 1 dollar per GB. In addition,
+with the advent of cloud storage services, many companies are offering free
+storage online. And as always, code repositories can help with revisioning.
+That being said, it is still very convenient to have even a small amount of
+storage between computers in a set of labs. 
 
-For network storage, central file servers are the most common way to go. Some implementations use distributed storage across an entire lab's hard drives. This method requires a number of security and redundancy considerations and should only be considered support staff are able to maintain it. 
+For network storage, central file servers are the most common way to go. Some implementations use distributed storage across an entire lab's hard drives. This method requires a number of security and redundancy considerations and should only be considered if the support staff is able to maintain it. 
 
 -Client machines
+
+
+**********
+this section comes after exports
+
+Although root_squash is useful for preventing possible disasters, no_root_squash is highly useful for fixing things affecting all students. For example, when updating between the Linux distributions Fedora to Ubuntu, students still kept the same home directory with the same set of configuration files. Files that functioned in Fedora could potentially break various features in Ubuntu (most often with window managers). These files are often consistently the same with all students and consistently cause the same issues. The hard way to deal with this is to give students instructions (perhaps on the support FAQ) on how to fix it. This will inevitably lead to many emails to tech support anyway.
+
+Instead, it is useful to have a server or small subnet that has permission to mount student home directories on fileservers with no_root_squash. That way, root can then make edits all student homes at once via a script. This script would need to have a lot of checks in place to ensure that it is fixing the problem and only fixing the problem. It would also need highly verbose logging to figure out if anything went wrong. In its simplest form, this script would just loop through a list of affected student home directories, cd to each of them, and run whatever command necessary to fix the issue. 

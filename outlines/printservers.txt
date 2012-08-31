@@ -1,0 +1,16 @@
+Title: Print Servers
+
+Summary: Overview of the print servers and their functionality to the labs. 
+
+Background: Need for a server in every lab that handles various functionality
+to save the sysadmins much time and headache.
+
+How to:
+-dhcpd
+-tftp
+-pxe
+-printing summary (more in the lab printing section)
+-nfs
+-samba
+-nis slave
+-Ghost (even though that's used on a laptop)
