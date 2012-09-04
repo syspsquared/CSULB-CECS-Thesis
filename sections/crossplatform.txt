@@ -1,0 +1,8 @@
+Up until now, only Linux based labs have been described. However, to be competitive in today's market, many platforms need to be considered. In CECS, we have a combination of Windows, Mac OSX, and various distributions of Linux. Getting all of them to play nicely with each can often be an aggravating (sometimes maddening) process. 
+
+-Labs forced on us (macs
+
+-3 common user account systems: LDAP, M$ AD (based on LDAP), and NIS/NIS+
+The most important thing to consider in a mixed platform environment is the user accounting system. This is the system that manages login user IDs, user attributes, and passwords. User attributes may consist of a user's full name, student/employee name, contact email, etc. Some other useful attributes could be a list of courses that student takes or his major. For employees, 
+
+At the very least, the system needs to manage user IDs and passwords centrally. If this is not done, each platform must have its own central authentication system set up and each user must remember separate sets of user IDs and passwords (though the users 

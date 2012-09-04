@@ -8,7 +8,7 @@ Background:
 
 How to: (Some of this is optional if I have time)
 -centralized user accounts (Brain and ntserver)
--centralized file systems (d*)
+-centralized file systems (d*) (covered in another section, mention briefly)
 -Account management (search)
 
 -Crossplatform software (dreamweaver,eclipse,derby,etc.)
