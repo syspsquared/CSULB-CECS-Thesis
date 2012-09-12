@@ -9,7 +9,7 @@ Progress of sections:
 -ssh push: Ready for review.
 -Student faculty help: nearly finished, need section on barefoot specifics.
 -filesystem management: in progress.
--Lab printing: just started. 
+-Lab printing: Ready for review.
 -printservers: just added. Necessary to finish the thoughts on lab printing.
 
 Progress of Outlines:
