@@ -4,9 +4,9 @@ Todo:
 -The appendix with all the hard instructions and scripts.
 
 Progress of sections:
--unclogging: Ready for review.
--documentation solution: Ready for review.
--ssh push: Ready for review.
+-unclogging: Reviewed and Corrected.
+-documentation solution: Reviewed.
+-ssh push: Reviewed and Corrected.
 -Student faculty help: nearly finished, need section on barefoot specifics.
 -filesystem management: in progress.
 -Lab printing: Ready for review.
