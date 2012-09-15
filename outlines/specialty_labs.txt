@@ -1,6 +1,6 @@
 Title: Specialty Labs
 
-Summary: Describes specialized labs such as the 405 sysadmin lab and the 3rd floor network labs. Probably a little on the mac lab if 
+Summary: Describes specialized labs such as the 405 sysadmin lab and the 3rd floor network labs. 
 
 Background:
 -student sysadmins.
@@ -14,18 +14,35 @@ How to:(Sysadmin lab)
   -dhcp
 -master image (similar to main labs)
 -Cloning (also similar to main labs)
+-Sharing the lab (when 476 and 472 were at once, needed a quick clone method)
+-Account issues.
+-Isolation complication
+  -can't update via repository. Need the whole distro on disk or temporarily open the lab up.
 
 How to: (Net Admin labs)
 -Cannot be isolated, so restricted.
 -switch and router setup.
 -nat settings to simulate home network.
 
-Optional:
+How to: (Cluster lab)
+-Needs powerful switch.
+-Needs to get out to download and upload.
+-Relatively insecure because no security software can be installed.
+-Access only to few responsible individuals.
+-Remote access issues.
+
+How to: (Security Lab)
+-Needs total isolation (no gateway machine).
+-Everyone using it signs an agreement.
+-Preferable to put away from wireless nodes.
+
+How to: (Projects lab)
+-Cube farm.
+-Restricted network.
+-Room access control.
+-Security System.
+
+How to:
 -telnet only labs to special core servers (how ada compiles worked)
 -Virtual machine labs (machines running a VM on top that can be snapshot)
 
-Issues:
--Isolation complication
-  -can't update via repository. Need the whole distro on disk or temporarily open the lab up.
--Account issues.
--Sharing the lab (when 476 and 472 were at once, needed a quick clone method)
