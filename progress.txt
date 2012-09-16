@@ -14,6 +14,8 @@ Progress of sections:
 
 -printservers: just added. Necessary to finish the thoughts on lab printing.
 -filesystem management: in progress.
+-Crossplatform considerations: Started
+-Introduction: Nothing in the file yet.
 
 Progress of Outlines:
 -More or less finished (will obviously mod or change up as needed)
