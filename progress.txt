@@ -7,11 +7,13 @@ Progress of sections:
 -unclogging: Reviewed and Corrected.
 -documentation solution: Reviewed.
 -ssh push: Reviewed and Corrected.
--Student faculty help: nearly finished, need section on barefoot specifics.
--filesystem management: in progress.
+
+-Student faculty help: Ready for review
 -Lab printing: Ready for review.
--printservers: just added. Necessary to finish the thoughts on lab printing.
 -specialty labs: Ready for review.
+
+-printservers: just added. Necessary to finish the thoughts on lab printing.
+-filesystem management: in progress.
 
 Progress of Outlines:
 -More or less finished (will obviously mod or change up as needed)

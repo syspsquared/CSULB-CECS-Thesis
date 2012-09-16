@@ -12,7 +12,7 @@ One of the most important uses of the print server is cloning the labs. Full det
 
 Netbooting requires 4 things: DHCP (listed above), TFTP, PXE, and NFS. DHCP is required because the machines do not know who is who and require an IP address to get started. After they've successfully netbooted, the IP address they have can be changed to the one they actually need or be mapped automatically with dhclient if the print server knows their MAC address. 
 
-TFTP (Trivial File Transfer Protocol) is required for loading the initial boot image. TFTP has very little security and must be highly restricted on the print server. It has no authentication and only allows downloading of specific files. This is necessary because during netboot, clients do not have any sort of identification or credentials that they can use. TFTP is only for used for the loading of the boot image. The lab image to clone with is transfered with NFS.
+TFTP (Trivial File Transfer Protocol) is required for loading the initial boot image. TFTP has very little security and must be highly restricted on the print server. It has no authentication and only allows downloading of specific files. This is necessary because during netboot, clients do not have any sort of identification or credentials that they can use. TFTP is only used for the loading of the boot image. The lab image to clone with is transfered with NFS after the machine has fully booted. 
 
 DHCP and TFTP are used to support PXE (Pre-boot Execution Environment). This is the protocol used to support netbooting without the help of any storage device on the client. 
 NFS
