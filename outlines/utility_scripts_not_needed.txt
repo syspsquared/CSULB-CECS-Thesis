@@ -1,7 +1,0 @@
-Title: Administrative Utility Scripts
-
-Summary: scripts like resetX and paper. Where they go and how they get used. 
-
-Include stuff like system default cshrc and bash profile in install_master.
-
-How's this different from Help for students?
