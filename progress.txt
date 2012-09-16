@@ -11,6 +11,7 @@ Progress of sections:
 -filesystem management: in progress.
 -Lab printing: Ready for review.
 -printservers: just added. Necessary to finish the thoughts on lab printing.
+-specialty labs: Ready for review.
 
 Progress of Outlines:
 -More or less finished (will obviously mod or change up as needed)
