@@ -1,4 +1,4 @@
-Regardless how well structured a lab is, user support is necessary for problems and potential confusion. This support may come in the form of a tech support email, ticketing system, website with an FAQ, or some fix utilities. 
+Regardless how well structured a lab is, user support is necessary for problems and potential confusion. This support may come in the form of a tech support email, ticketing system, website with an FAQ, or some fix utilities. CECS labs offers a website, a tech support email, some text files with instructions, and some Linux fix scripts.
 
 The first line of any support is a website. This site should have at a minimum an FAQ with frequently asked questions. It should be very easy to find on the site and be clearly visible. This is the equivalent of a README file with a software distribution. This FAQ should answer such things as getting started, creating an account, various problems with accounts, password reset instructions, or various issues users may commonly have. It should also have in bold and/or red lettering certain things that students should know such as rules for not eating in the labs. 
 
