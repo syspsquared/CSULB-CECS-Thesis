@@ -2,3 +2,5 @@ The most time consuming part of managing a lab is building and maintaining the m
 
 
 At some point, a CD or DVD must be used to run the installer for the image. This may not be a physical disk if the image is netbooted, but for CECS labs, the chosen distribution Ubuntu will not support a netboot to CD. 
+
+
