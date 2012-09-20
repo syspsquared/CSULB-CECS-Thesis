@@ -1,6 +1,35 @@
-The most time consuming part of managing a lab is building and maintaining the master images to the labs. All workstations in the lab are basically clones of a single machine designated as the lab master. This machine is then cloned using the cloning process. Details on cloning can be found in the cloning section. 
+The most time consuming part of managing a lab is building and maintaining the master images to the labs. All workstations in the lab are basically clones of a single machine designated as the lab master. This machine is then cloned using the cloning process. Details on cloning can be found in the cloning section. Descriptions on the various steps to build the master image are here. What is most important about the image is the instruction set used to build it. The actual image itself is pointless if there are no instructions on how it was built. If instructions exist, they can further be tailored if distribution upgrades are made, or possibly if the choice of distribution changes. 
 
+-Booting from cd and doing barebones install.
+At some point, a CD or DVD must be used to run the installer for the image. This may not be a physical disk if the image is netbooted, but for CECS labs, the chosen distribution Ubuntu will not support a netboot to CD. Fortunately, the CD only needs to be used once on the master image. The rest of the labs can be cloned via network. Once the CD started some type of setup program or script must be run to do a standard install of the distribution. How this setup is run varies depending on the distribution. In CECS, we run the server edition of Ubuntu and do a basic install with nothing but essentials running. 
 
-At some point, a CD or DVD must be used to run the installer for the image. This may not be a physical disk if the image is netbooted, but for CECS labs, the chosen distribution Ubuntu will not support a netboot to CD. 
+-Setting up root or admin (dummy workaround).
+Sometimes during the install, it will prompt to create a non-root user account. This is because Unix and Linux should never be run directly with the root user under normal circumstances. In our lab environment, the root user is only used to do ssh pushes and troubleshoot issues. However, some distributions will force creation of a non-root system administration account. To workaround this, create an account called dummy. After the install is finished, use the administrative privileges this account grants to set a root passwd, then use root to delete the account. 
 
+-setting up networking.
+Network settings vary depending
+
+-Master package (repository) list and installation. Then removal of uneeded (cups), and autoremove.
+The reason we only install essentials during the CD install stage is because we only install packages we need. We build a master packages list of things to install and run that list into a package manager. The manager then goes out to its distribution's download site and fetches the packages requested. It then handles the installation process and dependency resolving for all packages it is able to retrieve. This process requires minimal interaction from a system administrator 
+
+-Manual package (source or binaries) installation.(drjava,derby)
+-Text only login (init 3 or removing gdm.con)
+-REF:Automount (may be a reference to filesystem management)
+-Groups
+-REF: Mail
+-Disable student control (ctrl-alt-del, menu shutdown, yp tools, )
+-Powersaving
+-system logs and optionally log forwarding for audit purposes.
+-REF: ssh host and authorized keys
+-REF: Printing (should also include paper compiled commands)
+-REF: support commands local
+-Restrict access (hosts.allow,deny,cron.deny,expired shells should go here as well). Note the alternative, iptables for firewalling the outside. Also note that ideally you'd want to be behind a master firewall (corporate)
+-ntp (time)
+-Bootloader setup (lilo.conf). Also note the linked kernel.
+-REF: rebooting to cleanup. (and include crontab)
+-Login scripts (set hostname, check space, alter environment, etc)
+-motd
+-Miscellaneus tweaks (firefox,pine/alpine(describe general because this happens often),gtk printing,eclipse printing,jetty,ctrl-alt-bksp,pmount,pumount)
+-Considerations for different hardware architectures (64 bit compiles,manual
+driver install)
 
