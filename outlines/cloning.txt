@@ -1,20 +1,23 @@
 Title: Cloning
 
-Summary: Setting up the nfs/dhcpd/tftpboot server and cloning instructions.
+Summary: Cloning instructions. Server setup is in printserver section.
 
 Note: making the master image is in another section. This section assumes the image is available on another server (tiger) first. 
 
 How to (printserver):
+REF: Printserver section.
 -Explain and Setup dhcpd server
 -Explain and Setup tftpboot server (look up how to mod the bootloader)
 -Explain and Setup nfs server
+
+Need this here:
 -Copy the image to each lab server (explain why you need a server per lab per subnet)
 
 How to (Lab Load):
--BIOS setup
+-BIOS setup (and while you're at it, why we disable cd boot)
 -network boot to slackware (or another distro)
 -install script and what it does. 
--OPTIONAL: fully automated lab installs with wakeonlan and timing script. Advantages and why it isn't necessary in our case (but would be nice).
+-fully automated lab installs with wakeonlan and timing script. Advantages and why it isn't necessary in our case (but would be nice).
 
 Efficiency:
 -Description of how long it takes, how efficient it is, and how it compares to other lab install methods (kickstart, jumpstart, etc). This is basically a comparison between what CECS does vs what I do at IBM.

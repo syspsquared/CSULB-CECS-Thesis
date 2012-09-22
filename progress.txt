@@ -11,6 +11,7 @@ Progress of sections:
 -Student faculty help: Ready for review
 -Lab printing: Ready for review.
 -specialty labs: Ready for review.
+-cloning: Ready for review.
 
 -printservers: just added. Necessary to finish the thoughts on lab printing.
 -filesystem management: in progress.
