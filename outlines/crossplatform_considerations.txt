@@ -8,8 +8,9 @@ Background:
 
 How to: (Some of this is optional if I have time)
 -centralized user accounts (Brain and ntserver)
--centralized file systems (d*) (covered in another section, mention briefly)
 -Account management (search)
+-centralized file systems (d*) (covered in another section, mention briefly)
+-samba (mentioned in printservers)
 
 -Crossplatform software (dreamweaver,eclipse,derby,etc.)
 
