@@ -9,14 +9,17 @@ Progress of sections:
 -ssh push: Reviewed and Corrected.
 
 -Student faculty help: Ready for review
--Lab printing: Ready for review.
+-Lab printing: Ready for review. (costs added)
 -specialty labs: Ready for review.
 -cloning: Ready for review.
+-lab images: Ready for review (minus mail rules).
 
 -printservers: just added. Necessary to finish the thoughts on lab printing.
 -filesystem management: in progress.
 -Crossplatform considerations: Started
 -Introduction: Nothing in the file yet.
+-Local repository: Nothing yet. Considering scrapping it.
+-Mail system: Considering scrapping it.
 
 Progress of Outlines:
 -More or less finished (will obviously mod or change up as needed)
