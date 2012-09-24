@@ -11,7 +11,6 @@ How to:
 -making changes to all home dirs with no_root_squash
 -quotas
 -Automounter
--Removing local files (/tmp on linux and local profiles on macs)
 #-Generating and clearing windows profiles (optional)
 -backups (optional, detail d*BU and schedule)
 -Student pen drives and external storage (optional, students downloading a ton)
