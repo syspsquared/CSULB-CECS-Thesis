@@ -3,12 +3,14 @@ Title: Local Repository
 summary: getting a repository server in the core that syncs with a distro repository. 
 
 Background:
+-mirror, or cache
 -periodic updates.
--security concerns.
+-security concerns because of lapses in update pulls.
 -bandwidth saving.
 
 how to:
 -setting up the server.
+-setting up apache
 -setting up syncing.
 
 Issues:

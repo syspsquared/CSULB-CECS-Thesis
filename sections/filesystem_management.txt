@@ -9,6 +9,13 @@ Although root_squash is useful for preventing possible disasters, no_root_squash
 
 Instead, it is useful to have a server or small subnet that has permission to mount student home directories on fileservers with no_root_squash. That way, root can then make edits all student homes at once via a script. This script would need to have a lot of checks in place to ensure that it is fixing the problem and only fixing the problem. It would also need highly verbose logging to figure out if anything went wrong. In its simplest form, this script would just loop through a list of affected student home directories, cd to each of them, and run whatever command necessary to fix the issue. 
 
+-Quotas
+Total space for network storage is highly limited. Although hard drives have come down in price considerably, with almost 1500 accounts at any given time, a disk quota is a necessity. We set a quota conservatively at 512 MB for each student and 1 GB for each faculty member. This may seem small considering the price per GB of hard drives, but the students are mostly writing code in text files. They are not doing heavy picture or video editing so that amount of space has been sufficient so far. Recently, we've noticed that web pages are are becoming larger and browsers are caching more as a result. Mozilla Firefox in particular now sets its cache limit at 1 GB. Thus, students are filling up their quotas quickly just by visiting websites. We've modified the cache to return to its old 50 MB limit, but we realize that our fileservers will need to be upgraded in the next couple of years to keep up with increasingly larger files. 
+
+-automount
+We use the automount tool on our workstations and servers to mount file shares from our core fileservers. The automounter has several advantages over using the classic method of relying on the fstab (filesystem table). The fstab mounts all the time starting from when the /etc/fstab is read on system startup. This generates unnecessary network traffic when a mount isn't being used. In addition, if a mount fails, it will not remount until either a sysadmin remounts it manually or the system restarts. The automounter addresses both these issues. It runs as a daemon in the background and waits for NFS requests by other processes. It handles the given request 
+
+-backups
 
 -Student Drives
 

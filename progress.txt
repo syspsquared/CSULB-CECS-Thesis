@@ -15,10 +15,10 @@ Progress of sections:
 -lab images: Ready for review (minus mail rules).
 -printservers: Ready for review.
 -Crossplatform considerations: Ready for review.
+-local repository: Ready for review
 
 -filesystem management: in progress.
 -Introduction: Nothing in the file yet.
--Local repository: Nothing yet. Considering scrapping it.
 -Mail system: Considering scrapping it.
 
 Progress of Outlines:
