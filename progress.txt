@@ -13,10 +13,10 @@ Progress of sections:
 -specialty labs: Ready for review.
 -cloning: Ready for review.
 -lab images: Ready for review (minus mail rules).
+-printservers: Ready for review.
+-Crossplatform considerations: Ready for review.
 
--printservers: just added. Necessary to finish the thoughts on lab printing.
 -filesystem management: in progress.
--Crossplatform considerations: Started
 -Introduction: Nothing in the file yet.
 -Local repository: Nothing yet. Considering scrapping it.
 -Mail system: Considering scrapping it.
