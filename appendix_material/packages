@@ -1,0 +1,253 @@
+# NOTE: Packages may be listed even if they were already installed by another package. 
+#Installing a package installs the dependencies (prereq's)
+#The -y answers "yes" to all question (required in a script)
+# Ubuntu 12.04 LTS Server AMD64
+
+#>apt-get -y install 
+
+# apt-get -s simulates
+#apt-get install $(<file)
+
+# To do a bulk install:
+# cat packages | grep -v ^# > packages_do
+# apt-get install $(<packages_do)
+
+#X Server utils fonts (these are not in default fonts for 64-bit install)
+xinit 
+x11-xserver-utils 
+x11-common 
+x11-utils 
+x11-apps
+xfonts-75dpi 
+xfonts-100dpi 
+
+#Windows managers
+twm 
+fvwm 
+gnome-app-install 
+gnome-desktop-environment
+kde-window-manager 
+fluxbox
+blackbox
+openbox
+xfce4
+
+#Display managers
+#kdm
+#(not needed after all, but can be set in /etc/X11/default-display-manager)
+
+# office tools
+calligra
+openoffice.org
+dia
+gimp
+inkscape
+
+#web browsers and plugins
+firefox 
+chromium-browser
+lynx 
+elinks
+epiphany-browser
+
+#Email client and utils, chat clients
+thunderbird 
+mailutils
+alpine
+sendmail 
+sendmail-bin
+sendmail-doc
+sasl2-bin
+biff
+pidgin
+empathy
+
+# viewers
+gv 
+poppler-utils
+#xpdf (broken in 12.04. But evince works now)
+djview
+
+#Compilers and debuggers
+gcc 
+gcc-doc 
+g++ 
+#(probably includes the 4.6 jdk files)
+gcj-jdk 
+ant
+gdb 
+gdb-doc 
+gcl 
+gcl-doc
+gobjc 
+gobjc++ 
+gnat 
+gnat-doc 
+gprolog
+gprolog-doc
+xxgdb
+kcachegrind 
+valgrind
+doc-base
+ruby
+scala
+scala-doc
+clojure
+perl
+php5-cli
+php-doc
+
+#Game dev libraries
+libsdl1.2-dev 
+libsdl-image1.2-dev 
+libsdl-mixer1.2-dev 
+libsdl-ttf2.0-dev 
+libdevil-dev
+glew-utils 
+freeglut3
+freeglut3-dbg
+freeglut3-dev
+
+#Extra Libraries
+libboost-all-dev
+qt-sdk
+
+#python tools.
+python 
+python-doc
+python-dbg 
+python-numpy 
+python-numpy-doc 
+python-numpy-dbg 
+python-scipy
+
+# MPI tools
+openmpi-bin 
+openmpi-dev 
+openmpi-doc 
+openmpi-dbg 
+python-mpi
+python-matplotlib
+
+#IDEs
+bison 
+bison-doc 
+flex
+flex-doc
+clisp
+clisp-dev 
+clisp-doc
+codeblocks
+eclipse 
+eclipse-jdt
+eclipse-cdt
+eclipse-cdt-jni
+netbeans
+expect-dev
+
+#Code Repository clients
+git
+git-doc
+git-man
+subversion
+subversion-tools
+git-svn
+
+#Flash
+nasm  
+flasm 
+yasm
+flashplugin-installer
+
+#Shells
+bash
+bash-doc
+ksh 
+tcsh 
+zsh 
+zsh-doc
+
+#Editors
+nvi 
+emacs 
+elvis
+bluefish
+gedit
+gedit-plugins
+vim
+vim-doc
+vim-gnome
+vim-scripts
+vim-latexsuite
+vim-gui-common
+vim-gnome
+exuberant-ctags
+
+#tex
+ispell 
+enscript 
+texlive
+#(gnu pic)
+gputils 
+
+#remote utilities
+lftp
+openssh-server 
+libssl-dev
+putty
+rsh-client
+#RDP Clients
+rdesktop 
+grdesktop 
+xrdp
+filezilla
+telnet
+rsh-client
+
+#Printing
+lpr
+
+#Time
+ntp 
+ntp-doc
+
+#utils
+pmount
+quota
+traceroute
+curl
+blender
+p7zip-full
+
+#Multimedia
+mplayer 
+mplayer-gui
+vlc
+
+#(old crypt replacement)
+mcrypt 
+
+#matlab replacement
+scilab 
+scilab-doc 
+
+#Simulator
+spim
+
+#nfs
+nfs-common
+autofs5
+
+#Database tools
+mysql-client
+#mysql-query-browser
+mysql-workbench
+
+# For 32-bit compatibility
+ia32-libs-multiarch
+
+#Bootloader (will prompt)
+lilo
+
+#Do this last. (set domain to cecsyp)
+nis 

@@ -1,0 +1,137 @@
+# Do the following steps once (unless you have a bug):
+On the print server:
+  copy in the kernel (bzImage), initrd (initrd.img) and boot message
+   (message.txt) into /tftpboot/slackware.
+   tgz of slackware is in ~vjd/ubuntu/bootstuff2.tgz, just cd to /tftpboot
+   and undo the tar.
+ cp slackware boot lines from tiger into /tftpboot/config/default
+  (the three lines are in ~vjd/ubuntu/bootstuff1)
+  (do not replace the file, add the 3 lines)
+
+# Do the following steps once per loading a lab
+On test163 (the Master Image building machine):
+  Build the master image into /dev/sdb1 as ubuntu.tgz
+   (see install.master)
+  copy  the ubuntu.tgz file into /export on the printserver
+   scp ubuntu.tgz root@psvr:/export/
+On Tiger:
+  build the initd.img with the updated ubuntu.install script on tiger,
+   move it into /tftpboot/slackware/
+   (see makingInitrd)
+   Current initrd is in ~root/extractdir.
+   Current initrd.img is in ~root/newInitrd
+   Current script is ~root/extractdir/usr/lib/setup/ubuntu.install
+On the print server (psvr416):
+ Do once:
+  copy /tftpboot/slackware/* from tiger into /tftpboot/slackware/*
+   cd /tftpboot/slackware
+   scp root@tiger:/tftpboot/slackware/initrd.img .
+  create the exports directory for the image
+   mkdir /export
+  setup the nfs exports for the room the printserver is in
+   vi /etc/exports
+    add the line (psvr416)
+     /export 134.139.247.192/255.255.255.192(ro,no_subtree_check)
+      (psvr412 134.139.247.128, psvr414 134.139.247.64)
+   start nfs
+     chmod a+x /etc/rc.d/rc.nfsd
+     /etc/rc.d/rc.nfsd start
+   
+ Do each time you clone:
+  Copy the master image into the /export dirctory.
+   go to the machine with the master image,
+   use scp to copy the master image tarball to each of the printers
+    (see install_master for detailed command)
+  Modify dhcpd.conf to be dhcpd.conf.PXE and restart dhcpd
+   cp -p /etc/dhcpd.conf.PXE /etc/dhcpd.conf
+   killall -9 dhcpd
+   /usr/sbin/dhcpd
+  do the cloning
+  After the installs disable the PXE boot and restart dhcpd
+   cp -p /etc/dhcpd.conf.NOPXE /etc/dhcpd.conf
+   killall -9 dhcpd
+   /usr/sbin/dhcpd
+-------
+Clone (i.e. Install) do once per lab machine
+boot: Slackware
+fdisk /dev/sda
+ about 80% sda1 linux(83), 20% sda2 swap(82)
+install.YYY XXX  #where YYY is the room number and 
+  XXX is the linux # of the machine
+reboot
+
+The following should be in the install.416 script:
+The other scripts, install.414 install.412  will have different IP numbers
+and names.
+
+mkswap /dev/sda2
+mke2fs /dev/sda1
+mount /dev/sda1 /mnt
+modprobe e100
+ifconfig eth0 134.139.247.196 netmask 255.255.255.192
+route add default gw 134.139.247.193 (may not be needed anymore)
+mount -t nfs -o nolock 134.139.247.194:/export /cdrom
+cd /mnt
+tar -xzpf /cdrom/ubuntu.tgz
+mount -o bind /dev /mnt/dev
+# The next removes the warning about /proc/partitions not being found
+mount -o bind /proc /mnt/proc
+chroot /mnt lilo
+echo  "ecs416lin$1.cecs.csulb.edu" > etc/hostname
+----
+ssh linux
+ On the boot server (linux1, linux2):
+  apt-get -y install atftpd ; edit ftpd out of inetd.conf
+  apt-get -y install dhcp3-server ; add MAC addresses to dhcpd.conf
+  /tftpboot
+   Backed up 32-bit install directory as slackware32
+   Created a new slackware directory with the initrd.img and kernel 
+    from the ECS405 install of Slackware-13.37 because it handles the
+    gigabit ethernet cards on the board.
+   Start dhcpd and tftp by hand on the boot server (Ubuntu style):
+    service dhcp3-server start
+    atftpd --daemon /tftpboot
+ On tiger:
+  placed the install image in /exports as ubuntu.tgz
+ On the ssh linux box we are installing
+  BIOS
+   SATA must be set to IDE, set boot to hard drive, network, F12 for net
+  fdisk /sda
+   sda1 linux (80-90% linux)
+   sda2 swap (type 82)
+  Warning: script is for intalling Slackware 13.37 in ECS 405, you must
+    do this by hand (until we build a new initrd.img with a good script)
+  mke2fs /dev/sda1
+  mkswap /dev/sda2
+  mount /dev/sda1 /mnt
+  cd /mnt
+  ifconfig eth0 134.139.249.xx netmask 255.255.255.192 (see front of box for xx)
+  route add default gw 134.139.249.65
+   mounted install image directory from tigere
+  mount -t nfs -o nolock 134.139.249.167:/export /cdrom
+  tar-1.13 -xzpf /cdrom/ubuntu.tgz
+ edited /mnt/etc/hostname (name of the machine)
+ edited /mnt/etc/lilo.conf
+  change vga = 773 to vga = normal because that's what the monitor can do
+ edit /mnt/etc/yp.conf
+  ypserver 134.139.247.168  (psvr414)
+ edit /mnt/etc/printcap  set psvr414 as lp
+ edited /mnt/etc/network/interfaces (use static ip)
+   iface eth0 inet static
+    address 134.139.249.xx
+    netmask 255.255.255.192
+    gateway 134.139.249.65
+  change /mnt/boot/vmlinuz to link to the 37 kernel (this time only)
+  copy down e1000e.xx.tgz into /root, make, makeinstall
+  installed boot sector
+   mount -o bind /dev /mnt/dev
+   # The next removes the warning about /proc/partitions not being found
+   mount -o bind /proc /mnt/proc
+   chroot /mnt lilo
+   umount /mnt/dev
+   umount /mnt/proc
+   umount /mnt
+   reboot
+   cd e1001-1.9.5./src  (update the kernel network drivers)
+   make ; make install
+ 

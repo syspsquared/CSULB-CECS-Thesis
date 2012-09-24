@@ -1,0 +1,22 @@
+#
+# hosts.allow	This file describes the names of the hosts which are
+#		allowed to use the local INET services, as decided
+#		by the '/usr/sbin/tcpd' server.
+#
+# loop back
+ALL:127.
+
+# CECS subnets
+ALL:134.139.246.
+ALL:134.139.247.
+ALL:134.139.248.
+ALL:134.139.249.
+ALL:134.139.250.
+ALL:134.139.251.
+ALL:134.139.252.
+ALL:134.139.253.
+ALL:192.168.0.
+
+# ecs faculty offices
+#ALL:134.139.60.
+

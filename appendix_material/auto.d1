@@ -1,0 +1,14 @@
+u1 -soft,intr,suid,noacl,nolock,quota,timeo=9600 d1.cecs.csulb.edu:/u1
+u2 -soft,intr,suid,noacl,nolock,quota,timeo=9600 d1.cecs.csulb.edu:/u2
+u3 -soft,intr,suid,noacl,nolock,quota,timeo=9600 d1.cecs.csulb.edu:/u3
+u4 -soft,intr,suid,noacl,nolock,quota,timeo=9600 d1.cecs.csulb.edu:/u4
+u5 -soft,intr,suid,noacl,nolock,quota,timeo=9600 d1.cecs.csulb.edu:/u5
+u6 -soft,intr,suid,noacl,nolock,quota,timeo=9600 d1.cecs.csulb.edu:/u6
+u7 -soft,intr,suid,noacl,nolock,quota,timeo=9600 d1.cecs.csulb.edu:/u7
+u1BU -soft,intr,noacl,nolock d1.cecs.csulb.edu:/u1BU
+u2BU -soft,intr,noacl,nolock d1.cecs.csulb.edu:/u2BU
+u3BU -soft,intr,noacl,nolock d1.cecs.csulb.edu:/u3BU
+u4BU -soft,intr,noacl,nolock d1.cecs.csulb.edu:/u4BU
+u5BU -soft,intr,noacl,nolock d1.cecs.csulb.edu:/u5BU
+u6BU -soft,intr,noacl,nolock d1.cecs.csulb.edu:/u6BU
+u7BU -soft,intr,noacl,nolock d1.cecs.csulb.edu:/u7BU
