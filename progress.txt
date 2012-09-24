@@ -16,14 +16,13 @@ Progress of sections:
 -printservers: Ready for review.
 -Crossplatform considerations: Ready for review.
 -local repository: Ready for review
+-Introduction: Ready for review...but wouldn't call it finished. 
 
 -filesystem management: in progress.
--Introduction: Nothing in the file yet.
--Mail system: Considering scrapping it.
+-Mail system: Scrapped unless a good reason is found to keep.
 
 Progress of Outlines:
 -More or less finished (will obviously mod or change up as needed)
--Still need install_master outline but that must be done last since its sections depend on the others. 
 
 Progress of Research:
--Still need to look up notes on local_repository even if not doing.
+-research on local repository finished but nothing practical done. 
