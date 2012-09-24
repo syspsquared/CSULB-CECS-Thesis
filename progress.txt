@@ -17,8 +17,8 @@ Progress of sections:
 -Crossplatform considerations: Ready for review.
 -local repository: Ready for review
 -Introduction: Ready for review...but wouldn't call it finished. 
+-filesystem management: Ready for review.
 
--filesystem management: in progress.
 -Mail system: Scrapped unless a good reason is found to keep.
 
 Progress of Outlines:
