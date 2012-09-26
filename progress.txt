@@ -4,20 +4,25 @@ Todo:
 -The appendix with all the hard instructions and scripts.
 
 Progress of sections:
--unclogging: Reviewed and Corrected.
--documentation solution: Reviewed.
--ssh push: Reviewed and Corrected.
+Done:
+-unclogging
+-documentation solution
+-ssh push
+-Student faculty help
+-Lab printing
+-specialty labs
+-cloning 
+-lab images 
+-printservers 
+-Crossplatform considerations
+-local repository 
+-filesystem management
 
--Student faculty help: Ready for review
--Lab printing: Ready for review. (costs added)
--specialty labs: Ready for review.
--cloning: Ready for review.
--lab images: Ready for review (minus mail rules).
--printservers: Ready for review.
--Crossplatform considerations: Ready for review.
--local repository: Ready for review
--Introduction: Ready for review...but wouldn't call it finished. 
--filesystem management: Ready for review.
+To fix:
+-Introduction
+
+To write:
+-Conclusion
 
 -Mail system: Scrapped unless a good reason is found to keep.
 
@@ -25,4 +30,4 @@ Progress of Outlines:
 -More or less finished (will obviously mod or change up as needed)
 
 Progress of Research:
--research on local repository finished but nothing practical done. 
+-research on local repository finished but nothing practical done. Written.
