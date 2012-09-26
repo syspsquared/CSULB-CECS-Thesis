@@ -14,6 +14,7 @@ How to:
 #-Generating and clearing windows profiles (optional)
 -backups (optional, detail d*BU and schedule)
 -Student pen drives and external storage (optional, students downloading a ton)
+-Malware
 
 Issues:
 -nfs locking
