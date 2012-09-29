@@ -2,7 +2,7 @@
 Title: Introduction: The Problem
 
 -Student oriented labs.
-The CECS labs are student oriented.  Some research can be done with them, but we focus primarily on coursework.  We restrict privileges on them but have a fairly liberal security policy so that students can do development work.
+The CECS labs are student oriented.  Some research can be done with them, but we focus primarily on coursework.  We restrict privileges on them but have a fairly liberal security policy so that students can do development work. 
 
 -Limited faculty testing (usually week before semester starts)
 One of the main problems we have with faculty is a lack of feedback during the architect phase for lab images.  Requests for changes during the time we build the labs come from only a small handful of faculty.  Most faculty will wait until a week before the semester starts before making change or update requests.  Some of them will even wait until the semester starts (although these are often ignored from faculty that are repeat offenders).  
