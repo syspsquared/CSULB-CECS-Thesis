@@ -1,0 +1,11 @@
+#!/bin/csh -f
+
+cd ~/.ssh
+
+# linuxlab is a file containing all workstation hostnames. 
+foreach M ( `cat linuxlab | grep 412 ` )
+   echo -n "$M $* : "
+   ssh $M $* &
+   echo
+end
+

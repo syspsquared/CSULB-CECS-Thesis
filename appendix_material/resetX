@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# get the current time (use in naming backup files)
+TIME=`date +%y%m%d%H%M` # echo $TIME
+#
+
+# save Old Working Directory
+OWD="/net/d2/u5/f/conf"
+
+# make sure we are in HOME directory
+cd ~
+
+# make a directory to save old conf
+SAVE=.oldXconfig.$TIME #echo $SAVE
+mkdir -p $SAVE
+
+for FILE in `cat $OWD/Xrc.confiles`  ; do
+  if [ -e $FILE ] ; then
+     #echo $FILE
+     mv -f $FILE $SAVE/
+  fi
+done
+#ls -rlast $SAVE
+tar -xf ~conf/data/skel.tar
+
+#/bin/rm -rf /tmp/*$USER* >& /dev/null
+#/bin/rm -rf /tmp/.*$USER* >& /dev/null 
+/bin/rm -rf /tmp/.* >& /dev/null 
+/bin/rm -rf /tmp/* >& /dev/null 
+
+if [ -f ~/Desktop/xterm.desktop ] ; then
+	/bin/rm -f ~/Desktop/xterm.desktop
+fi
+if [ -f ~/Desktop/TerminalServer.desktop ] ; then
+	/bin/rm -f ~/Desktop/Terminal\ Server.desktop
+fi
+
+/bin/cp -fv ~conf/Desktop/* ~/Desktop/

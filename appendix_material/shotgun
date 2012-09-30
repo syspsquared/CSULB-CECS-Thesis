@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# move to home
+cd ~
+
+# now, move down one
+cd ..
+
+echo "This will replace ALL the file in your home directory with the the ones from the "
+echo "backup server.   The file servers are backed up nightly so the files will be from "
+echo "the last backup.  This may not be what you want, so be VERY SURE before you "
+echo "answer 'yes'!"
+
+
+
+echo "Are you sure you want to do this? (answer with 'yes'!!)"
+read ANSWER
+if test  $ANSWER != "yes" 
+then
+	echo "You did not answer 'yes'."
+	echo "good bye"
+	exit 1
+fi
+
+echo "Are you REALY sure? (answer with 'yes'!!)"
+read ANSWER
+if test $ANSWER != "yes" 
+then
+	echo "You did not answer 'yes'."
+	echo "good bye"
+	exit 1
+fi
+
+echo "Okay here we go ...."
+echo "This could take a while"
+
+# call retrive for home directory
+/usr/local/bin/retrieve -f $USER
+
+# move back to home
+cd ~
+
