@@ -1,0 +1,16 @@
+\chapter{Complications of Genetic Algorithms}
+The many variations in genetic algorithms have been created to address numerous genetic algorithm effectiveness.
+
+\section{Diversity}
+One of the most fundamental problems that can occur in a genetic algorithm is the probability between 0.01 and 0.001 per bit, the delay would have a high expected duration \cite{re:mutationrate1}\cite{re:mutationrate2}.  For this reason, some on a diversity measure of the population, raising it when the diversity becomes too low.
+
+Another issue of low genetic diversity in the population is that it represents poor Hamming distance between the chromosomes selected for breeding \cite{re:diversityincrossover}.  Conversely, when it is desirable to explore multiple local optima, the same measure could be used to promote crossover within these niches and even partition the population for separate parallel exploration \cite{re:parallelGAniche}.
+
+similar integer values often have very dissimilar binary representations, as shown in Equation~\ref{eq:linearvsHammingdistance} by the linear distance Hamming distance for the integers seven and eight.  If the schemata being explored were $x111_2$ and the optimum value for the problem happened to be $1000_2$, the space worse for a larger pair of values such as $1000000000000000_2$ and $0111111111111111_2$.
+
+	\begin{equation}
+		\label{eq:linearvsHammingdistance}
+		|7 - 8| = 1 \tab \neq \tab ||0111_2-1000_2||_1 = 4
+	\end{equation}
+
+representations.  $1101_2$ and $1100_2$ are close together by both linear and would be useless since no schema would have any approximate meaning.

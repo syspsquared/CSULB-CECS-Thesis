@@ -1,0 +1,44 @@
+This already looks like way more than an hour.
+
+0.  Intro to GA with binary strings (no schema)
+    1.  Optimization and random walks
+1.  Crossover bias.
+    1.  What is it?
+        1.  Crossover seems like it will reproduce some strings at a lower frequency if the binary features those strings require are rare in the population.  This is a purely binary effect, so these less frequent strings would not generally have lower fitness in a real problem, but they would effectively be selected against anyway.  So the questions are:
+    2.  Leads to questions: How serious is this effect?  Can anything simple be done to account for it?
+2.  How serious is this effect?
+    1.  Bad, in cases where features misrepresented.  
+    2.  Predictably bad?
+	     1.  When is this not a problem?  Any 0..2^n-1 range, so normal integers or those being used to map floats.
+	     2.  When is this a problem?  Any other range.  Particularly relevant for small enumerations.
+        3.  Measuring bias (without regard to offset)
+3.  Can anything simple be done to account for it?
+    0.  Rejected fixes
+        1.  Scale causes features to be of uneven binary size and if normalized independent uncrossable.
+        2.  Multiply and mod causes random search in significant bits.
+    1.  Observed that ranges of the same size had differing feature bias (0-5 v 1-6).
+    2.  Suggests shifting binary representation of range inside genetic operations.
+4.  Methodology
+    1.  Performed pseudo-GA (no fitness) for many combinations of GA parameters.
+        1.  List parameters
+        2.  Justify concentrations
+        3.  Note on dealing with illegal strings: wasting probability mass, simplest and acceptable fix is to roll it into nearest value.
+    2.  Calculated bias measures for each base set and average of each simulation.
+5.  Results
+    1.  Bias significantly but insufficiently improved by offset.
+    2.  Predictable pattern in offset, including bit padding to be commented upon in the next section.
+6.  Is there any reason to keep a binary string representation anyway?
+    0.  Representation doesn't have to be binary string for genetic operators.
+    1.  Schema theory
+    2.  NFL objection to GA --> unless binary representation provides prior information about the problem, it can't be better.
+    3.  Instances in which binary representations provide prior misinformation.
+        1.  Problems with similarity:  
+            1.  Numerical parameters:  1000 and 111 may have adjacent optimal fitness as integer parameters, but are less schema similar to each other than 1001 or 110 which would both be less optimal.  Gray code fixes this for only single bit errors.
+            2.  Categorical parameters:  111 may be the optimal value.  Because categorical values aren't adjacent to each other in the same way numerical values are, 110 is not closer to 111, for example if 110 stands for the company "Toyota" and "110" for "General Electric".  Therefore, the two most schematically similar strings to 111, which are 110 and 011, may have extremely low fitness and as such erroneously imply 111 is also expected to have low fitness.
+    4.  Implicit alterations to GA parameters and operators.
+        1.  Crossover rate depression (specific to my alteration).
+        2.  Crossover mutation.
+    5.  Actual GA comparison: non-bs, bs, offset-bs (no padding to keep crossover rate consistent)
+        1.  Which variations
+        2.  Note on crossover probability vs chromosome length (sorta included in 5.4.1) and per bit mutation rate adjustment for non-bs.
+7.  Conclusion: Implicit dynamic mutation (see email)

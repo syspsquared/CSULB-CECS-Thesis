@@ -1,0 +1,10 @@
+Binary numbers:
+010_2 vs 010
+
+figures and tables in paragraphs
+
+tables, all.
+
+table left justify title
+
+equation,table,figure after spacing

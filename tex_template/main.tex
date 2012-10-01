@@ -1,0 +1,189 @@
+% READ ME, PLEASE !!!!
+% This document is based on the LaTeX format of Mark T. McLaughlin's thesis
+% which was made with WinEdt 5.4, October 2005.  This top section is his
+% comments.
+%
+% 1) IF YOU CAN'T FORMAT SOME PART OF YOUR THESIS ACCORDING TO THE CSULB
+%    THESIS GUIDELINES:   DON'T WORRY!!
+%    Just rewrite the crap in MSWord. The command, \usepackage{times}
+%    puts everything in the same font as the times roman used by MSWord
+%
+% 2) There are a few SMALL PROBLEMS with the
+%    table of contents, list of figures, and list of tables. The problems are
+%    a) appendix subhead titles are not supposed to be included in the table of
+%    contents, b) figures in the appendices are not supposed to be included
+%    in the list of figures, and c) tables in the appendices are not supposed to be
+%    included in the list of tables. -EASY SOLUTION: Make up a phony appendix, say
+%    phonyAppendixA, which is blank, but the same number of pages as your real
+%    appendix A. (Similarly, do the same with appendix B, appendix C, etc...)
+%    Then at the end of this file, main.tex, comment out your real
+%    appendix A, and uncomment this phony appendix when you LaTex your document
+%    for the purposes of generating a table of contents, list of figures, and
+%    list of tables. Then when you want to LaTex the rest of your real document,
+%    comment out your phony appendices, and uncomment your real appendices.
+%
+% Everything else passed the thesis office inspection!!! -Bibliography, Signature page,
+% Equation numbering, figures, tables, margins, all that junk......
+% Thanks Yamato Matsuoka for creating such a nice thesis template!
+%
+% MORE HELPFUL STUFF:
+% TIPS FOR MAKING FIGURES AND TABLES
+%   AUTOCAD:
+%       In Windows: autocad -> HP color laserjet postscript -> print to filename.ps
+%       In Linux: pstoedit -f xfig filename.ps filename.fig
+%                 xfig filename.fig
+%        in xfig: export -> filename.eps
+%        put filename.eps in LaTex document
+%
+%   EXCEL: excel -> print to postscript (in printer settings click on eps postscript)
+%       In Linux: pstoedit -f xfig filename.ps filename.fig
+%        in xfig: export -> filename.eps
+%        put filename.eps in LaTex document
+%
+
+%% =====================================================================
+%% Thesis --- Main LaTeX File  ver 0.1
+%%                 Date: 6/22/2011 started
+%% =====================================================================
+
+\documentclass[12pt]{csulb_thesis}
+%\documentclass[12pt]{report}  %% regularly use this
+\usepackage{amsmath}   %% mainly to use align environment
+\usepackage{amssymb}   %% to use \boldsymbol
+\usepackage{times}
+%\usepackage{txfonts}
+%%% txfonts converts default CM fonts to the followings
+%%  Computer Modern Roman      -->  Times
+%%  Computer Modern San Serif  -->  Helvetica
+%%  Computer Modern Typewriter -->  Corresponding Typewriter Font
+
+
+%\usepackage[dvipdfm]{color}  %% if you like
+
+%\usepackage[dvips]{graphicx}
+% \usepackage[dvipdfm]{graphicx}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+%% For printing use   [Option `hyperref.sty' is needed]
+\hypersetup{colorlinks=false}
+
+% -------------
+% For pdfLaTeX
+%\usepackage[pdftex]{graphicx,color}
+%\usepackage[pdftex,colorlinks]{hyperref}
+% -------------
+
+%%
+%\allowdisplaybreaks[1]
+%%% \allowdisplaybreaks[n] ... allow pagebreak within eqnarray/align environment n = 1~4
+
+\nonstopmode  % Keep compiling even when errors occur
+
+
+%% ----------------------------------
+%%            Newcommands          %%
+% \newcommand{\vect}[1]{\boldsymbol{#1}}  % vector (bold symbol)
+% \newcommand{\uvec}[1]{\hat{\vect{#1}}}  % unit vector (bold & hat)
+% \newcommand{\mytxt}[1]{\texttt{#1}}
+% \newcommand{\mybold}[1]{\textbf{#1}}
+% \newcommand{\prof}[1]{Dr$.$ {#1}}
+% \newcommand{\myA}[1]{A$({#1})$} %A(t), the acoustic signal from the microphone
+% \newcommand{\myB}[1]{B$({#1})$} %B(t), a signal N times the freq of A(t)
+\newcommand{\tab}{\hspace*{1.5em}}
+
+%% ----------------------------------
+
+
+%% ----------------------------------
+%%          Author's Info          %%
+\title{Problems with Crossover Bias for Binary String Representations in Genetic Algorithms}
+\author{Brian Cleary}
+\gradmonth{August }  % month & year of the graduation
+\gradyear{2011}  % month & year of the graduation
+\department{Department of Computer Science and Computer Engineering} % department
+\degree{Master of Science} % CSULB degree
+\bachelor{B.S.}  % bachelor degree (abbreviated)
+\bacheloryear{2003}  % The year bachelor degree was given
+\undergraduniv{California State University, Long Beach} % university where the degree was earned
+%% ----------------------------------
+
+
+
+%% ---------------------------------%%
+%%       Thesis Committee           %%
+\firstmember{Shui-Fung Lam, Ph.D. (Chair)} %%% Don't forget to put (Chair) at last
+\deptfirst{Computer Science}
+
+\secondmember{Kenneth James, Ph.D.} 
+\deptsecond{Computer Science}
+
+\thirdmember{Burkhard Englert, Ph.D.} 
+\deptthird{Computer Science}
+
+\deanname{Kenneth James, Ph.D.} 
+\deandept{Department Chair, Computer Science}
+%% ----------------------------------
+
+
+%%------------- Begin Document -------------------%%
+%%                                                %%
+\begin{document}
+\abstract{\input{abstract}}
+\maketitle
+
+%\pagenumbering{arabic} %%%%%%% Comment Out if the abstract is one page long %%%%%%%%%%
+%\pagestyle{empty}     %%%%%%% Uncomment   if the abstract is one page long %%%%%%%%%%
+
+
+%%%---- Insert them if \signaturepage is not used ----
+%\pagenumbering{roman}
+%\setcounter{page}{2}   %%% Adjustment of Page numbering
+%%%----
+
+\signaturepage
+% \include{acknowledgement}
+\tableofcontents 
+\listoffigures
+\listoftables
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%    This is manually inserted TOC entry!        %%
+\addtocontents{toc}{\protect\contentsline{chapterhead}{\chaptername}{}{}}
+%% the last {} may be removed if `hyperref.sty' is NOT used.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%% Similarly, the following should be inserted somewhere in the document
+%%%%%%%%%%%%%% TOC entry ! %%%%%%%%%%%%%%%%%%%%%
+%%\addtocontents{toc}{\protect\contentsline{chapterhead}{\chaptername}{Page}{}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%% Or, insert the following if page breaking occurs in appendix entries
+%%%%%%%%%%%%%% TOC entry ! %%%%%%%%%%%%%%%%%%%%%
+%%\addtocontents{toc}{\protect\contentsline{chapterhead}{\null}{Page}{}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\clearpage \pagenumbering{arabic}
+\include{introduction}
+\include{overview}
+\include{complications}
+\include{problem}
+\include{methodology}
+\include{results}
+\include{conclusions}
+
+
+% \appendix
+%\include{phonyAppendixA} %-Use this to make a thesis office approved TOC, LOF, and LOT
+%\include{phonyAppendixB} %-Use this to make a thesis office approved TOC, LOF, and LOT
+% \include{detailedDescriptionOfTheCircuit}
+% \include{circuitConstruction}
+
+%\bibliographystyle{utphys}  % With journal title
+% \bibliographystyle{h-physrev} % No journal title appears
+% \bibliography{papers}
+\include{bibliography}
+\end{document}
+%%                                                            %%
+%%------------- End of Document ------------------------------%%

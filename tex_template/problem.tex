@@ -1,0 +1,52 @@
+\chapter{Problems with Combinatorial Crossover Bias for Binary String Genetic Representations}
+\section{Distribution of Features and Values}
+When using a limited range of integer values, crossover as the recombination of 
+
+% Tony's table edits:
+\begin{table}
+\caption{Crossover Outcomes for the Range 0 to 2}
+\label{tab:crossoveroutcomes0to2}
+\begin{center}
+\begin{tabular}{ccc}
+\hline\\[-0.75pc]
+	$00_2 \times 00_2 & \rightarrow &  00_2 \:,\: 00_2$ \\ \\		%\\[0.5pc]
+% \hline\\[-0.75pc]
+	$00_2 \times 01_2 & \rightarrow &  01_2 \:,\: 01_2$ \\ \\
+% \hline\\[-0.75pc]
+	$00_2 \times 10_2 & \rightarrow &  10_2 \:,\: 00_2$ \\ \\
+% \hline\\[-0.75pc]
+	$01_2 \times 00_2 & \rightarrow &  00_2 \:,\: 01_2$ \\ \\
+% \hline\\[-0.75pc]
+	$01_2 \times 01_2 & \rightarrow &  01_2 \:,\: 01_2$ \\ \\
+% \hline\\[-0.75pc]
+	$01_2 \times 10_2 & \rightarrow &  00_2 \:,\: 11_2$ \\ \\
+% \hline\\[-0.75pc]
+	$10_2 \times 00_2 & \rightarrow &  10_2 \:,\: 00_2$ \\ \\
+% \hline\\[-0.75pc]
+	$10_2 \times 01_2 & \rightarrow &  11_2 \:,\: 00_2$ \\ \\
+% \hline\\[-0.75pc]
+	$10_2 \times 10_2 & \rightarrow &  10_2 \:,\: 10_2$ \\ 
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+%
+\begin{table}
+\caption{Crossover Outcomes Frequency for the Range 0 to 2}
+\label{tab:crossoveroutcomefrequency0to2}
+\begin{center}
+	\begin{tabular}{lcccc}
+		\hline \\[-0.75pc]
+		Outcome	&	$00_2$	&	$01_2$	&	$10_2$	&	$11_2$	 \\[0.75pc]
+		\hline \\[-0.75pc]
+		Frequency&	7			&	5			&	4			&	2			 \\[0.5pc]
+		\hline\\[-0.75pc]
+	\end{tabular}
+\end{center}
+\end{table}
+%
+
+
+
+\section{Similarity Problems with Categorical Variables}
+As noted previously, another problem with the binary string representation is that 
