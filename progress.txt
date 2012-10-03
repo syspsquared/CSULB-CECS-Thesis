@@ -37,12 +37,12 @@ Tex formatting:
 #-documentation solution
 #-ssh push
 #-Student faculty help
--Lab printing
--specialty labs
--cloning
--lab images
--printservers
--Crossplatform considerations
+#-Lab printing
+#-specialty labs
+#-cloning
+#-lab images
+#-printservers
+#-Crossplatform considerations
 #-local repository
--filesystem management
+#-filesystem management
 
