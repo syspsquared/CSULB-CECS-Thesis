@@ -4,23 +4,26 @@ Title: Introduction: The Problem
 -Student oriented labs.
 The CECS labs are student oriented.  Some research can be done with them, but we focus primarily on coursework.  We restrict privileges on them but have a fairly liberal security policy so that students can do development work. 
 
--Limited faculty testing (usually week before semester starts)
+\subsection{Limited faculty Testing}
 One of the main problems we have with faculty is a lack of feedback during the architect phase for lab images.  Requests for changes during the time we build the labs come from only a small handful of faculty.  Most faculty will wait until a week before the semester starts before making change or update requests.  Some of them will even wait until the semester starts (although these are often ignored from faculty that are repeat offenders).  
 
 We understand why this occurs.  Most faculty are not paid during the summer months and are therefore under no obligation to work.  However, this does not excuse them from submitting requests at the end of the previous semester.  They are also never given any sort of penalty for doing this especially if they are tenured.  Part time faculty also have the problem where they are not told what classes they will be teaching until a few days before semester starts or even after it starts.  
 
 In any case, this is a problem for us because we have very limited amount of testing on our lab images.  We often do not have the knowledge base to test software needed for classes because we do not understand it.  We research as much as we can and hope that that is enough.  We also have a relatively fast lab cloning procedure to recreate the labs in the event of emergency when the semester starts.  However, in many cases we must ignore requests from faculty members until the next iteration of the lab images the following semester.
 
--Staff and faculty turn over.
+\subsection{Staff and Faculty Turnover}
 In addition we also have the problem of short faculty turn over.  Our part timer lecturers do not stay if their reviews are poor.  This is good for the students and usually if they are not well liked by the students, they are not well liked by the staff either.  The problem with this turn around is that we do not have a complete list of faculty.  The list is changed often and no attempt is made to keep it updated.  This means that we cannot reliably send out email to all faculty to explain issues or give instructions.  
 
--Multiple labs with hundreds of machines.  Different operating systems and distros require different needs.
+\subsection{Mixed Environment}
 We have the fourth floor of the Engineering and Computer Science building dedicated to our labs.  We have 3 Linux labs of 30 workstations each, 4 Microsoft Windows labs of 30 workstations each, and an Apple iMac lab of 25 workstations.  Operating systems on these workstations are very different from one another.  This requires experience in many areas and is virtually impossible for a single staff member to accomplish alone.   
 
--Many pieces of software to maintain and frequent software updates.
+\subsection{Frequent Software Updates}
 There are numerous pieces of software to install and maintain on our workstations.  We do this by creating master lab images for each platform and deploying them through a cloning procedure.  Maintenance of these master images is time consuming as there are frequent software updates to software on them as well as to the operating systems.  
 
--limited staff.
+\subsection{Limited Staff}
 We have a limited amount of staff available to us.  This is not uncommon in industry.  IT departments are often kept lean because they are seen as an expense.  This results in limits to how much work can be done and how many technicians are available to support a number of workstations.  We improve this situation through automation, but there is only so much we can automate.  Often, we have to postpone needed updates and feature requests until we have time.   
+
+
+
 
 Despite the problems we have, the situation is not hopeless.  We do as much as we can to keep things running efficiently.  This paper will document the various steps we take to do so.  However, it will focus on the Linux environment and only touch briefly on other platform.  

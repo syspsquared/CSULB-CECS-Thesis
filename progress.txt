@@ -23,6 +23,7 @@ To fix:
 
 To write:
 -Conclusion
+-abstract
 
 -Mail system: Scrapped unless a good reason is found to keep.
 

@@ -1,0 +1,14 @@
+\include{cloning}
+\include{crossplatform}
+\include{documentation_solution}
+\include{filesystem_management}
+\include{intro_to_problem}
+\include{lab_image}
+\include{lab_printing}
+\include{local_repository}
+\include{printservers}
+\include{specialty_labs}
+\include{ssh_push_writeup}
+\include{student_faculty_help}
+\include{unclogging}
+\include{conclusion}
