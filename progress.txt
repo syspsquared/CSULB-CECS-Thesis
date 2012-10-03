@@ -31,3 +31,18 @@ Progress of Outlines:
 
 Progress of Research:
 -research on local repository finished but nothing practical done. Written.
+
+Tex formatting:
+#-unclogging
+#-documentation solution
+#-ssh push
+#-Student faculty help
+-Lab printing
+-specialty labs
+-cloning
+-lab images
+-printservers
+-Crossplatform considerations
+#-local repository
+-filesystem management
+

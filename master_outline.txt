@@ -2,21 +2,31 @@
 
 Order:
 
-Introduction
+Chapter 1: Introduction
+Section: 
+The problem
 
-documentation solution
-student faculty help
+Chapter: Documentation solution
+section: lab documentation
+Section: student faculty help
 
-printservers
-filesystem management
-lab printing
-ssh push
+Chapter: Lab infrastructure
+Section: printservers
+Section: filesystem management
+Section: lab printing
 
-install master
-cloning
-local repository
+Chapter: lab installs
+Section: install master
+Section: cloning
 
-unclogging
+Chapter: Lab Maintenance
+Section: ssh push
+Section: unclogging
+Section: local repository
 
-crossplatform considerations
-specialty labs
+Chapter: Special Considerations
+Section: specialty labs
+Section: crossplatform considerations
+
+Chapter: Conclusion
+Section: Conclusion
