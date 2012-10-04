@@ -8,7 +8,7 @@ This would be less of an issue if we got more feedback from faculty members, but
 
 Exactly what goes into the image is difficult to determine because of the changes. Some things rarely change while others are temporary fixes that change every semester. In the appendix section, I have provided a copy of our current install\_master instructions. They are only valid now and will be changed at our next release cycle. 
 
-\subsection{Booting from Install Media}.
+\subsection{Booting from Install Media}
 At some point, a CD or DVD must be used to run the installer for the image.  This may not be a physical disk if the image is netbooted, but for CECS labs, the chosen distribution Ubuntu will not support a netboot to CD.  Fortunately, the CD only needs to be used once on the master image.  The rest of the labs can be cloned via network.  Once the CD started some type of setup program or script must be run to do a standard install of the distribution.  How this setup is run varies depending on the distribution.  In CECS, we run the server edition of Ubuntu and do a basic install with nothing but essentials running.  
 
 \subsection{Setting Up Administrative User}
@@ -31,7 +31,7 @@ Part of our environment involves keeping text-only login screens and command lin
 Actually enabling text-only mode seems to be becoming harder and harder with each new Linux distribution release.  Most want to boot straight into a graphical user interface (GUI) to handle logins.  This makes sense for non-technical users, but makes things difficult for technical students.  Until recently, the easiest way was to set the default runlevel to 3.  This will allow networking and multiple users while remaining in text mode.  However, this is only possible on systems that run the classic Unix init process.  Our current distribution, Ubuntu, does not use init.  We have managed to still get text mode by removing the configuration script for the GUI login interface.  This presents several other problems, but after carefully working through them, we have managed to get our current system stable.  With each new distribution release though, new workarounds are needed for problems that appear.  
 
 \subsection{Automount}
-Information on what automount does can be found in Section~\ref{filesystem_management}.  We have automated its setup by just copying the configuration files to the appropriate directory.  
+Information on what automount does can be found in Chapter~\ref{ch:lab_maintenance}, Section~\ref{sec:filesystem_management}.  We have automated its setup by just copying the configuration files to the appropriate directory.  
 
 \subsection{Groups}
 Some of the groups in the "/etc/groups" configuration file must be renamed or added.  We have a faculty group, a student group, and a staff group.  They have numbers 30, 40, and 50 respectively.  Back when they were created, there were not many Unix system groups, so the original administrators were not worried about conflicts.  While there are conflicts today, renaming the groups has not caused any known issues.  
