@@ -492,6 +492,11 @@
 \renewcommand{\l@section}{\@dottedtocline{1}{1.0in}{2em}} %bpc fix TOC section spacing
 \renewcommand{\l@subsection}{\@dottedtocline{2}{1.5in}{3em}}
 
+%change _ char
+%\catcode`\_=12
+
+
+
 % ---------------------------------------------
 
 
