@@ -1,3 +1,6 @@
+#############################
+Printserver setup:
+
 Machine:
   setup as test160 because that's in the ypserver list of brain.
 Remote File systems:

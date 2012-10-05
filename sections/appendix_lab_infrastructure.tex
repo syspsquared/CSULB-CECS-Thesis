@@ -2,4 +2,198 @@
 
 \begin{verbatim}
 
+#############################
+Printserver setup:
+
+Machine:
+  setup as test160 because that's in the ypserver list of brain.
+Remote File systems:
+ mkdir /net /net/d1 /net/d2 /net/d3
+ edit /etc/rc.local
+   add automount for d1, d2, d3
+ /etc
+   add auto.d1 auto.d2 auto.d3
+
+Time
+  edit /etc/rc.d/rc.local
+    add netdate call
+  edit /etc/ntp.conf
+    server time.cecs.csulb.edu
+  make sure rc.ntpd is active
+
+NIS:
+  /etc/rc.d/rc.yp
+    uncomment nisdomain, ypserv and ypbind sections
+    eliminate the -broadcast from the ypserv
+    chmod a+x rc.yp
+  /etc/defaultdomain
+    edit to cecsyp
+  /etc/yp.conf
+    ensure ypbind uses ourself as the ypserver
+    ypserver 127.0.0.1
+  /etc/nsswitch.conf:
+    set to use nis (yp)
+     passwd,group,shadow = files nis
+  byhand for init:
+    niscdomainname cecsyp
+  /usr/lib/yp/ypinit -s brain.cecs.csulb.edu
+    need authorization for this particular server from brain
+  /usr/lib/yp:
+    brought in ypxfr_2perhour from another printer
+     (this transfers in the passwd map using ypxfer)
+  root crontab:
+    added ypxfer_2perhour calls at 7
+     7,17,27,37,47,57 7-21 * * * /usr/lib/yp/ypxfr_2perhour
+
+Samba:
+  smb.conf: from old psvr into /etc/samba/smb.conf
+   The faculty subnet needs to be added to smb.conf
+   The domain controller is now NTSERVER not MSAD
+  chmod a+x /etc/rc.d/rc.samba
+
+Printing:
+  ljfilter:
+    copied in old (~djv/printing/tcp/* is same as ~prmaster/src/*)
+      ljfilter.c connectTCP.h paper.h
+    edit ljfilter.c:
+      DEVICE is /dev/usb/lp0
+      added include of stdlib.h to avoid warnings
+      added more robust parsing of input because usb does not line buffer
+       and the parallel did (the old parse depended on the line buffering).
+    compiled and copied into /usr/local/sbin
+       protection: rwsr_x__T root lp
+  clean_restart_lpd:
+    modified the kill -9 to kill -TERM
+    copied into /usr/local/sbin
+      note: on standard printer system this was in /usr/local/bin
+    edited inittab:
+      ca::ctrlaltdel:/usr/local/sbin/clean_restart_lpd
+  printcap: (Windows calls the printer LP0)
+   lp|LP0:sd=/var/spool/lpd:lp=/dev/null:if=/usr/local/sbin/ljfilter
+  print queue display: ***
+    bring in /usr/local/showqueue
+      (this is a binary, where is source?)
+    /etc/rc.local:
+      add /usr/local/bin/showqueue &
+
+cron:
+  need cron entry for ypxfr (see above)
+
+dhcp:
+  bring dhcp conf files into /etc:
+    dhcpd.conf dhcpd.conf.NO-PXE dhcpd.conf.PXE
+     multiple files are for script turning on/off of netboot
+   add to dhcp.conf file "ddns-update-style none;" (new required options)
+  rc.local (start the dhcp daemon)
+   /usr/sbin/dhcpd
+pxe boot:
+  rc.local
+   /usr/sbin/in.tftpd -l -c -vvvv -s /tftpboot
+  /tftpboot (Windows)
+    pxelinux.0
+    pxelinux.cfg/default
+      This is a menu requires the following to exist:
+       Mr.Grey.img
+       pxekinfe/memory_test/memtest.tgz
+       memdisk
+    Linux labs have a different tftpboot
+  pxe configuration account (snagglepus)
+   add account to password file (group users, local home)
+   create home directory and .ssh directory for account
+   add public key from lab top to account.
+   add account to sudoers file with permission to run /root/pxeboot.sh
+   add pxeboot.sh and restart.dhcp file to /root
+
+
+Cloning:
+  1) add USB hard drive with tar image
+  2) PXE boot in ecs 405 
+    boot once to get MAC
+    add MAC to dhcp on jaguar and restart
+    boot
+  3) partition new drive, linux swap space 10%, linux ext2 90%
+  4) mkswap, mke2fs on partitions
+  5) mount USB image with tar
+  6) mount ext2 on new drive and cd into it.
+  7) Untar image from USB drive
+  8) install boot sector
+     mount -o bind /proc /mnt/proc
+     mount -o bind /sys /mnt/proc
+     chroot /mnt lilo
+  9) Edit untar'ed image
+     a) change HOSTNAME to test160
+     b) change rc.inet1 to test160 ip numbers
+     c) chown lp.lp /var/spool/lp; chmod 770 /var/spool/lp ;
+        rm /var/spool/lp/* (protections issue)
+     d) rm /etc/udev/rules.d/*  (entries for old ethernet MAC and CD id)
+     e) rm /etc/ssh/ssh_host*   (keys for the machine we are cloning from)
+  10) shutdown, move to ECS 408 and boot
+  11) get dhcp config from psvr to vjd directory
+  12) get dhcp config from vjd directory to new drive
+  13) Edits
+     a) add "ddns_update_style none;" line to dhcp.conf's
+     b) change HOSTNAME to psvr name
+     c) change rc.inet1 to psvr ip numbers (IP_ADDR, GATEWAY)
+     d) edit hosts, add psvr (for safety only)
+  14) shutdown, move to lab
+  15) reconfigure switch to accept new computer
+  16) replace printer and boot.
+  17) test
+    local printing, printing from a lab machine
+    z drive access, PXE configuration
+
+#############################
+#auto.master - ubuntu
+
+/net/aardvark /etc/auto.aardvark
+/net/d1 /etc/auto.d1
+/net/d2 /etc/auto.d2
+/net/d3 /etc/auto.d3
+/net/a1 /etc/auto.a1
+/net/charlotte /etc/auto.charlotte
+
+#############################
+#auto.d1 - ubuntu
+
+u1 -soft,intr,suid,noacl,nolock,quota,timeo=9600 d1.cecs.csulb.edu:/u1
+u2 -soft,intr,suid,noacl,nolock,quota,timeo=9600 d1.cecs.csulb.edu:/u2
+u3 -soft,intr,suid,noacl,nolock,quota,timeo=9600 d1.cecs.csulb.edu:/u3
+u4 -soft,intr,suid,noacl,nolock,quota,timeo=9600 d1.cecs.csulb.edu:/u4
+u5 -soft,intr,suid,noacl,nolock,quota,timeo=9600 d1.cecs.csulb.edu:/u5
+u6 -soft,intr,suid,noacl,nolock,quota,timeo=9600 d1.cecs.csulb.edu:/u6
+u7 -soft,intr,suid,noacl,nolock,quota,timeo=9600 d1.cecs.csulb.edu:/u7
+u1BU -soft,intr,noacl,nolock d1.cecs.csulb.edu:/u1BU
+u2BU -soft,intr,noacl,nolock d1.cecs.csulb.edu:/u2BU
+u3BU -soft,intr,noacl,nolock d1.cecs.csulb.edu:/u3BU
+u4BU -soft,intr,noacl,nolock d1.cecs.csulb.edu:/u4BU
+u5BU -soft,intr,noacl,nolock d1.cecs.csulb.edu:/u5BU
+u6BU -soft,intr,noacl,nolock d1.cecs.csulb.edu:/u6BU
+u7BU -soft,intr,noacl,nolock d1.cecs.csulb.edu:/u7BU
+
+#############################
+# DHCP server configuration file (/etc/dhcpd.conf)
+# writen 20030526 by malcolm
+# updated 20080814 by malcolm
+# updated 20120823 by npickrel
+# 	
+allow booting;
+allow bootp;
+authoritative;
+option domain-name "cecs.csulb.edu";
+option domain-name-servers 134.139.249.20;
+option routers 134.139.247.193;
+option subnet-mask 255.255.255.192;
+default-lease-time 21600; # 6 hour lease
+max-lease-time 43200;     # max 12 hours
+option ntp-servers 134.139.248.10;
+ddns-update-style none;
+
+  subnet 134.139.247.192 netmask 255.255.255.192 {
+    #range 134.139.247.195 134.139.247.250;
+    range 134.139.247.226 134.139.247.252;
+    #deny unknown-clients;
+    # UNCOMMENT below for network (PXE)boot
+    filename "pxelinux.0";
+}
+
 \end{verbatim}
