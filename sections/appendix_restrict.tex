@@ -1,0 +1,37 @@
+\chapter{Limiting Access}
+
+########################################
+# hosts.allow	This file describes the names of the hosts which are
+#		allowed to use the local INET services, as decided
+#		by the '/usr/sbin/tcpd' server.
+#
+# loop back
+ALL:127.
+
+# CECS subnets
+ALL:134.139.246.
+ALL:134.139.247.
+ALL:134.139.248.
+ALL:134.139.249.
+ALL:134.139.250.
+ALL:134.139.251.
+ALL:134.139.252.
+ALL:134.139.253.
+ALL:192.168.0.
+
+# ecs faculty offices
+#ALL:134.139.60.
+
+########################################
+#
+# hosts.deny	This file describes the names of the hosts which are
+#		*not* allowed to use the local INET services, as decided
+#		by the '/usr/sbin/tcpd' server.
+#
+# The portmap line is redundant, but it is left to remind you that
+# the new secure portmap uses hosts.deny and hosts.allow.  In particular
+# you should know that NFS uses portmap!
+# Deny access to everyone.
+ALL: ALL@ALL, PARANOID # Matches any host whose name does not match its address.
+########################################
+

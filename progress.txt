@@ -47,3 +47,32 @@ Tex formatting:
 #-local repository
 #-filesystem management
 
+Reference links:
+D-unclogging
+#-documentation solution
+D-ssh push
+D-Student faculty help
+#-Lab printing
+D-specialty labs
+D-cloning
+D-lab images
+D-printservers
+-Crossplatform considerations
+#-local repository
+-filesystem management
+
+Nallely review:
+D-intro
+-unclogging
+-documentation solution
+-ssh push
+-Student faculty help
+-Lab printing
+-specialty labs
+-cloning
+-lab images
+-printservers
+-Crossplatform considerations
+-local repository
+-filesystem management
+-Conclusion

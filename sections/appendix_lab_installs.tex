@@ -1,0 +1,521 @@
+\chapter{Lab Installation Instructions} \label{ap:lab_installation}
+
+\begin{verbatim}
+Install Master Instructions/Notes
+
+Ubuntu 12.04 LTS Server AMD64
+drive that is not nor mounted by
+the system when it is in standard use.
+
+Installing.
+
+Do a bare bones install:
+
+Boot the install CDROM.
+Partitioned the disk:
+ 90% ext2 (1st partition)
+ 10% swap (2nd partition)
+
+Use dhcp (auto), in the lab this will map you to some computer named test
+something or other.
+Auto time
+Enable root login and set a password. 
+If this doesn't work, create a dummy account.
+No auto update
+select no extra packages
+Go ahead and install grub (can still use lilo).
+select "Continue" to reboot to the hard drive
+
+Set root passwd and remove dummy user if needed:
+ userdel -r dummy
+   
+NOTE if installing on new motherboards:
+booted from CD, installed gcc with the packages from CD
+    installed 10.04 
+    put e1000e drivers (1.9.5) onto flashdrive
+    used make install to install from src.
+    bring eth0 up from there and do the install as usual.
+
+Install additional items:
+
+apt-get update           (list of packages and repositories)
+apt-get -y dist-upgrade  (update/upgrade the packages)
+
+Added packages (see packages file)
+ (do this before Edits as the added packages create the auto.master file)
+ (Warning: installing nis-common asks for the nis domain name)
+ scp npickrel@heart:~conf/admin/linuxlabs/packages .
+ apt-get -y install $(grep -v ^# packages)
+
+Disable cups
+ apt-get -y remove cups
+ apt-get -y autoremove
+
+mv /etc/init/gdm.conf /etc/init/gdm.conf.bak
+  we do not want an X11 login screen 
+Edit /etc/nsswitch.conf
+  passwd, group, shadow changed to "files nis"
+  hosts changed to files dns
+  (activates on new logins only)
+Revert to classic gnome:
+  vi /etc/X11/Xsession.d/50x11-common_determine-startup
+  replace /usr/bin/x-session-manager with /usr/bin/gnome-session-fallback
+
+Modify the autofs files
+ Installed the pre-built files.
+  cd ~
+  wget http://tiger/export/ubuntu/autofs.tgz
+  cd /etc
+  tar -xzf ~/autofs.tgz
+ Description of the contents of autofs.tgz)
+  auto.master: 
+   /net/aardvark /etc/auto.aardvark
+   /net/d1 /etc/auto.d1
+   /net/d2 /etc/auto.d2
+   /net/d3 /etc/auto.d3
+   /net/a1 /etc/auto.a1
+   /net/charlotte /etc/auto.charlotte
+  auto.aardvark:
+   u1 -ro,nolock,timeo=900,nfsvers=2 aardvrk.cecs.csulb.edu:/u1
+  auto.a1:
+   u1 -soft,intr,noacl,nolock,timeo=900 a1.cecs.csulb.edu:/u1
+  auto.charlotte:
+   mail -soft,intr,noacl,nolock,timeo=3600 charlotte.cecs.csulb.edu:/var/spool/mail
+  auto.d1:
+   u1 -soft,intr,suid,noacl,nolock,quota,timeo=9600 d1.cecs.csulb.edu:/u1
+   u2 -soft,intr,suid,noacl,nolock,quota,timeo=9600 d1.cecs.csulb.edu:/u2
+   u3 -soft,intr,suid,noacl,nolock,quota,timeo=9600 d1.cecs.csulb.edu:/u3
+   u4 -soft,intr,suid,noacl,nolock,quota,timeo=9600 d1.cecs.csulb.edu:/u4
+   u5 -soft,intr,suid,noacl,nolock,quota,timeo=9600 d1.cecs.csulb.edu:/u5
+   u6 -soft,intr,suid,noacl,nolock,quota,timeo=9600 d1.cecs.csulb.edu:/u6
+   u7 -soft,intr,suid,noacl,nolock,quota,timeo=9600 d1.cecs.csulb.edu:/u7
+   u1BU -soft,intr,noacl,nolock d1.cecs.csulb.edu:/u1BU
+   u2BU -soft,intr,noacl,nolock d1.cecs.csulb.edu:/u2BU
+   u3BU -soft,intr,noacl,nolock d1.cecs.csulb.edu:/u3BU
+   u4BU -soft,intr,noacl,nolock d1.cecs.csulb.edu:/u4BU
+   u5BU -soft,intr,noacl,nolock d1.cecs.csulb.edu:/u5BU
+   u6BU -soft,intr,noacl,nolock d1.cecs.csulb.edu:/u6BU
+   u7BU -soft,intr,noacl,nolock d1.cecs.csulb.edu:/u7BU
+  auto.d2,auto.d3: similar to auto.d1
+  cd ~
+  rm autofs.tgz
+  reboot (to activate)
+
+Edit /etc/group modify names for groups 30 and 40
+ faculty:x:30
+ student:x:40
+ staff:x:50
+
+Configure firefox to have the barefoot home page and no disk caching
+ (because we can get it to limit it's cache amount based on the account
+  quota)
+ Edit /etc/xul-ext/ubufox.js
+  pref("browser.startup.homepage", "file:/etc/xul-ext/homepage.properties");
+  pref("browser.cache.disk.smart_size.enabled", false);
+  pref("browser.cache.disk.enable", false);
+  pref("browser.cache.offline.enable", false);
+ Create file /etc/xul-ext/homepage.properties with following line
+  browser.startup.homepage=http://barefoot.cecs.csulb.edu
+ 
+Configure the mail system
+ Change the mail link
+  cd /var ; rmdir mail; ln -s /net/charlotte/mail
+ Modify the mailer definitions
+  cd /etc/mail 
+  mv sendmail.mc sendmail.mc.bak
+  wget http://tiger/export/ubuntu/sendmail.mc
+  make
+   This will modify the sendmail.cf, use "service sendmail reload" to activate
+  sendmail.mc modifications:
+   after the last define add:
+    dnl # local setup
+    define(`PROCMAIL_MAILER_PATH', `/usr/bin/procmail')dnl
+    define(`SMART_HOST', `charlotte.cecs.csulb.edu')dnl
+   after the last FEATURE add:
+    dnl # local setup
+    FEATURE(local_procmail, `', `procmail -t -Y -a $h -d $u')dnl
+    MASQUERADE_AS(`cecs.csulb.edu')dnl
+    FEATURE(`always_add_domain')dnl
+    FEATURE(masquerade_envelope)dnl
+    FEATURE(masquerade_entire_domain)dnl
+    FEATURE(`allmasquerade')dnl
+    MASQUERADE_DOMAIN(localhost)dnl
+    MASQUERADE_DOMAIN(localhost.localdomain)dnl
+   after the last MAILER add:
+    dnl # local setup
+    MAILER(`procmail')dnl
+   delete the default masquerade list below mailer.
+
+Symlink pine
+  ln -s /usr/bin/alpine /usr/bin/pine
+
+Edit /etc/init/control-alt-delete.conf
+Comment out  the exec shutdown
+
+Copied namemaster.user.notice (script file) into /usr/bin.
+  This file contains a notice to the students to use "search account"...
+ cd /usr/bin
+ wget http://tiger/export/ubuntu/namemaster.user.notice
+ chmod 755 /usr/bin/namemaster.user.notice
+Replaced chfn,chsh,passwd,ypchfn,ypchsh,yppasswd with links to above notice
+ cd
+ wget http://tiger/export/ubuntu/set_namemaster.sh
+ source set_namemaster.sh
+  What this script does:
+   1) Backup: /usr/bin/ ypchfn, ypchsh yppasswd passwd chsh chfn to *.org
+   2) Replace all with  links to namemaster.usr.notice
+
+Edit /etc/rc.local
+  add powersave definition
+ /usr/bin/setterm -blank 15 -powersave powerdown -powerdown 30
+  add the call to set the screen to tty0 (alt-F1
+ /bin/chvt 1
+
+Edit /etc/logrotate.conf
+ modify rotate 4 to rotate 13 (keep a semester's worth of backlogs)
+
+Add foobar public key to /root/.ssh/authorized_keys
+ cd
+ mkdir .ssh
+ chmod 700 .ssh
+ cd .ssh
+ wget http://tiger/export/authorized_keys2
+ mv authorized_keys2 authorized_keys
+Add foobar and tiger to known hosts (your are still in .ssh)
+ wget http://tiger/export/known_hosts
+
+Make all machines have the same ssh key so foobar can push
+  cd  # root private directory
+  wget http://tiger/export/ssh.tgz
+  cd /etc/ssh
+  tar -xzpf ~/ssh.tgz
+  rm ~/ssh.tgz  # optional
+
+Get the lab printcap (file has lp coded to 416)
+ cd /etc; rm printcap
+ wget http://tiger/export/ubuntu/printcap
+(clones will change the printcap depending on the lab).
+
+Edit /etc/fstab, remove the UUIDs and replace with /dev/sda1 and /dev/sda2
+ /dev/sda1 /
+ /dev/sda2 swap
+Set options to defaults
+
+Restrict access
+ cd /etc/
+ rm hosts.allow hosts.deny
+ wget http://tiger.cecs.csulb.edu/export/
+  hosts.allow
+  hosts.deny
+  cron.allow
+
+Edit /etc/ntp.conf
+  server 134.139.248.10
+  server 134.139.248.8
+service ntp restart
+ (Alternatively: /etc/init.d/ntp restart)
+ (if it does not restart, start it manually)
+
+Build and install expired shells
+ cd
+ wget http://tiger/export/ubuntu/sus.c
+ gcc sus.c -o /bin/sus
+ gcc sus.c -o /bin/exp
+
+ vi /etc/shells
+  add /bin/exp and /bin/sus
+
+/usr/local/bin
+  cd
+  Download source tarball wget http://tiger/export/ubuntu/local_bin_src.tgz
+  tar -xzpf local_bin_src.tgz
+  paper: gcc paper.c -o /usr/local/bin/paper
+  (if it does not compile, use the -w option to do warnings instead of errors)
+  retrieve: gcc retrieve-tar.c -o /usr/local/bin/retrieve
+  shotgun (script): cp -p shotgun /usr/local/bin/ 
+  diskspace (script): cp -p diskspace /usr/local/bin/ 
+  spacecheck.sh (script): cp -p spacecheck.sh /usr/local/bin/
+  --resetX (withheld until I figure out X)
+  --show_users.sh (not done-withdrawn)
+  --mpaper isn't necessary
+
+Get the lilo.conf file:
+  wget http://tiger/export/ubuntu/lilo.conf
+Contents:
+  LBA32
+  boot=/dev/sda
+  vga = 773
+  image = /boot/vmlinuz
+    root = /dev/sda1
+    label=linux
+    read-only
+
+Link in the correct (latest) kernel. Make sure you've rebooted by now.
+ cd /boot
+ ln -s vmlinuz-<latest kernel>-generic vmlinuz
+
+In /etc/X11/xinit/xinitrc edit, add following line above the Xsession line
+ to enable the exit of X with ctrl-alt-bksp:
+  setxkbmap -option terminate:ctrl_alt_bksp
+
+In /etc/default/ edit:
+  // console-setup: enable exit of X with ctrl-alt-bksp
+  //  Set: XKBOPTIONS="lv3:ralt_switch,terminate:ctrl_alt_bksp"
+  rcS:
+   Set: DELAYLOGIN, VERBOSE and FSCKFIX to yes
+
+/etc/gtk-2.0/
+ gtkrc:
+  To enable printing in X applications, build this file (mod 644) with the line:
+   gtk-print-backends = "lpr,file"
+
+Disable jetty: "rm /etc/rc*.d/S*jetty"
+
+/etc/csh/login.d/sethostname
+ create this file, contents (one line): setenv HOSTNAME `/bin/hostname`
+/etc/csh/login.d/checkspace
+ create this file, contents (one line): /usr/local/bin/spacecheck.sh
+
+Edit: /etc/crontab
+ Activate a once per night reboot to clear run away jobs
+  0 3 * * * root /sbin/reboot
+
+Allow users to run pmount for their usb drives
+ chmod 4755 /usr/bin/pmount 
+ chmod 4755 /usr/bin/pumount 
+
+Disable the updating of motd
+ unlink /etc/motd
+ cp /var/run/motd /etc/motd
+ vi /etc/motd (eliminate most lines)
+ Add a note on startx and a note to log out when done. 
+
+Disable the updating of resolv.conf
+ rm /etc/resolv.conf  (get rid of the link)
+ vi /etc/resolv.conf
+  nameserver 134.139.249.20
+  search cecs.csulb.edu
+
+
+Add DrJava
+ Download the latest drjava jar file (use startx and download via a browser)
+  place it in /usr/local/lib
+ Place the startup script drjava in /usr/local/bin. Contents of script:
+  java -jar /usr/local/lib/drjava-<latest version from lib>.jar
+  chown root:root drjava
+  chmod 755 drjava
+
+Add Apache Derby eclipse plugins
+ Download latest derby plugins (should be 2 zips, may be one)
+  unzip or untar the plugins. Should be org.* directories.
+   org.apache.derby.core_10.8.2
+   org.apache.derby.plugin.doc_1.1.3
+   org.apache.derby.ui_1.1.3
+ Place in /usr/lib/eclipse/plugins/
+   
+Remove admin capabilities from X window server:
+ cd /etc/polkit-1/localauthority/50-local.d
+ wget http://tiger/export/ubuntu/50-admin.pkla
+  Contents of 50-admin.pkla:
+      [disable suspend]
+        Identity=unix-user:*
+        Action=org.freedesktop.upower.suspend
+        ResultAny=no
+        ResultInactive=no
+        ResultActive=no
+      [disable hibernate]
+        Identity=unix-user:*
+        Action=org.freedesktop.upower.hibernate
+        ResultAny=no
+        ResultInactive=no
+        ResultActive=no
+
+Disable printing from eclipse
+  in /etc/eclipse.ini add the line
+   -Dorg.eclipse.swt.internal.gtk.disablePrinting
+
+NEED
+
+Turn off screen locks on gnome. Don't need for the lab
+Fix it so it doesn't clear screen on logout (search and account issue).
+
+Making the master image:
+ netboot slackware 13
+ If you have not done so during a previous install, fdisk /dev/sdb to have
+  one Linux ext2 partition and mke2fs on that partition.
+ mount /dev/sda1(2) /mnt
+ mount /dev/sdb1 /cdrom
+ rm /mnt/root/.ssh/known_hosts
+ rm /mnt/etc/udev/rules.d/70*
+  If you have done a previous install remove or move/backup the previous
+  tarball:
+ rm /cdrom/ubuntu.tgz
+  Build the new tarball
+ cd /mnt
+ tar -czpf /cdrom/ubuntu.tgz .
+  Copy the tarball to the image server
+ reboot to hard drive
+ login as root
+ mount /dev/sdb1 /cdrom
+ scp /cdrom/ubuntu.tgz root@tiger:/export/ubuntu/ubuntu.tgz
+
+ssh Linux servers:
+
+  These are 32-bit machines. Installed 32-bit bzImage and 32-bit initrd.img on
+  the boot server (linux1).
+
+  On a 32-bit box: booted 10.04 LTS 32-bit server CD
+  Built/installed a 32-bit system (similar instructions as above).
+
+  /usr/local/bin:
+   built 32-bit versions of paper and retrieve, shotgun is a script so it had
+    no problem
+
+  lilo.conf: used "vga = normal" (because the KVM monitor won't support 773).
+   Link in the correct kernel
+     (the kernel name was different)
+
+
+  master image:
+   had to boot from CD (netboot in ECS 408 is 64-bit)
+   called the master image ubuntu32.tgz
+
+Cloning:
+
+# Do the following steps once (unless you have a bug):
+On the print server:
+  copy in the kernel (bzImage), initrd (initrd.img) and boot message
+   (message.txt) into /tftpboot/slackware.
+   tgz of slackware is in ~vjd/ubuntu/bootstuff2.tgz, just cd to /tftpboot
+   and undo the tar.
+ cp slackware boot lines from tiger into /tftpboot/config/default
+  (the three lines are in ~vjd/ubuntu/bootstuff1)
+  (do not replace the file, add the 3 lines)
+
+# Do the following steps once per loading a lab
+On test163 (the Master Image building machine):
+  Build the master image into /dev/sdb1 as ubuntu.tgz
+   (see install.master)
+  copy  the ubuntu.tgz file into /export on the printserver
+   scp ubuntu.tgz root@psvr:/export/
+On Tiger:
+  build the initd.img with the updated ubuntu.install script on tiger,
+   move it into /tftpboot/slackware/
+   (see makingInitrd)
+   Current initrd is in ~root/extractdir.
+   Current initrd.img is in ~root/newInitrd
+   Current script is ~root/extractdir/usr/lib/setup/ubuntu.install
+On the print server (psvr416):
+ Do once:
+  copy /tftpboot/slackware/* from tiger into /tftpboot/slackware/*
+   cd /tftpboot/slackware
+   scp root@tiger:/tftpboot/slackware/initrd.img .
+  create the exports directory for the image
+   mkdir /export
+  setup the nfs exports for the room the printserver is in
+   vi /etc/exports
+    add the line (psvr416)
+     /export 134.139.247.192/255.255.255.192(ro,no_subtree_check)
+      (psvr412 134.139.247.128, psvr414 134.139.247.64)
+   start nfs
+     chmod a+x /etc/rc.d/rc.nfsd
+     /etc/rc.d/rc.nfsd start
+   
+ Do each time you clone:
+  Copy the master image into the /export dirctory.
+   go to the machine with the master image,
+   use scp to copy the master image tarball to each of the printers
+    (see install_master for detailed command)
+  Modify dhcpd.conf to be dhcpd.conf.PXE and restart dhcpd
+   cp -p /etc/dhcpd.conf.PXE /etc/dhcpd.conf
+   killall -9 dhcpd
+   /usr/sbin/dhcpd
+  do the cloning
+  After the installs disable the PXE boot and restart dhcpd
+   cp -p /etc/dhcpd.conf.NOPXE /etc/dhcpd.conf
+   killall -9 dhcpd
+   /usr/sbin/dhcpd
+-------
+Clone (i.e. Install) do once per lab machine
+boot: Slackware
+fdisk /dev/sda
+ about 80% sda1 linux(83), 20% sda2 swap(82)
+install.YYY XXX  #where YYY is the room number and 
+  XXX is the linux # of the machine
+reboot
+
+The following should be in the install.416 script:
+The other scripts, install.414 install.412  will have different IP numbers
+and names.
+
+mkswap /dev/sda2
+mke2fs /dev/sda1
+mount /dev/sda1 /mnt
+modprobe e100
+ifconfig eth0 134.139.247.196 netmask 255.255.255.192
+route add default gw 134.139.247.193 (may not be needed anymore)
+mount -t nfs -o nolock 134.139.247.194:/export /cdrom
+cd /mnt
+tar -xzpf /cdrom/ubuntu.tgz
+mount -o bind /dev /mnt/dev
+# The next removes the warning about /proc/partitions not being found
+mount -o bind /proc /mnt/proc
+chroot /mnt lilo
+echo  "ecs416lin$1.cecs.csulb.edu" > etc/hostname
+----
+ssh linux
+ On the boot server (linux1, linux2):
+  apt-get -y install atftpd ; edit ftpd out of inetd.conf
+  apt-get -y install dhcp3-server ; add MAC addresses to dhcpd.conf
+  /tftpboot
+   Backed up 32-bit install directory as slackware32
+   Created a new slackware directory with the initrd.img and kernel 
+    from the ECS405 install of Slackware-13.37 because it handles the
+    gigabit ethernet cards on the board.
+   Start dhcpd and tftp by hand on the boot server (Ubuntu style):
+    service dhcp3-server start
+    atftpd --daemon /tftpboot
+ On tiger:
+  placed the install image in /exports as ubuntu.tgz
+ On the ssh linux box we are installing
+  BIOS
+   SATA must be set to IDE, set boot to hard drive, network, F12 for net
+  fdisk /sda
+   sda1 linux (80-90% linux)
+   sda2 swap (type 82)
+  Warning: script is for intalling Slackware 13.37 in ECS 405, you must
+    do this by hand (until we build a new initrd.img with a good script)
+  mke2fs /dev/sda1
+  mkswap /dev/sda2
+  mount /dev/sda1 /mnt
+  cd /mnt
+  ifconfig eth0 134.139.249.xx netmask 255.255.255.192 (see front of box for xx)
+  route add default gw 134.139.249.65
+   mounted install image directory from tigere
+  mount -t nfs -o nolock 134.139.249.167:/export /cdrom
+  tar-1.13 -xzpf /cdrom/ubuntu.tgz
+ edited /mnt/etc/hostname (name of the machine)
+ edited /mnt/etc/lilo.conf
+  change vga = 773 to vga = normal because that's what the monitor can do
+ edit /mnt/etc/yp.conf
+  ypserver 134.139.247.168  (psvr414)
+ edit /mnt/etc/printcap  set psvr414 as lp
+ edited /mnt/etc/network/interfaces (use static ip)
+   iface eth0 inet static
+    address 134.139.249.xx
+    netmask 255.255.255.192
+    gateway 134.139.249.65
+  change /mnt/boot/vmlinuz to link to the 37 kernel (this time only)
+  copy down e1000e.xx.tgz into /root, make, makeinstall
+  installed boot sector
+   mount -o bind /dev /mnt/dev
+   # The next removes the warning about /proc/partitions not being found
+   mount -o bind /proc /mnt/proc
+   chroot /mnt lilo
+   umount /mnt/dev
+   umount /mnt/proc
+   umount /mnt
+   reboot
+   cd e1001-1.9.5./src  (update the kernel network drivers)
+   make ; make install
+\end{verbatim} 
