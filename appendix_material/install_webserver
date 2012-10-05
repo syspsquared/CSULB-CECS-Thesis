@@ -1,0 +1,220 @@
+GENERAL INSTALL (UBUNTU)
+
+Power up, Hit F2 during boot to get BIOS
+Under boot, removable is first, cdrom is second, hard drive is third 
+Boot from CD.
+Also (while you are modifying the BIOS) enable boot at power up
+
+Ubuntu Server menu:
+  This auto selects F2 (set up the language)
+    Select English
+  When you are done with that overlay the main menu is back on top
+    F1..F6 are now available
+   TASK: explore the F6 (Expert install) option
+   TASK: explore the F4 (OEM mode) option
+  Select "Install Ubuntu Server" (other options not explored)
+  Seems to crank up the installer, doesn't seem to be a full Linux boot.
+  Asks for non-free firmware files (Dell). Seems to be fine ignored.
+
+Setup Users:
+  user: configure password: configure, don't encrypt home dir
+  This account will be removed later.
+
+Choose Language, set up keyboard (use defaults)
+
+Network configurations:
+  In the tech shop we can let "auto configuration" proceed
+   Elsewhere you may hit cancel to get "manual configuration"
+   and manually the IP, name and domain
+
+Setting up clock:
+  Automatic ntp should work otherwise Manual: Pacific
+
+Partition disks.
+ Select manual
+  Delete all existing partitions.
+    If you have logical volumes you may need to zero out the front of
+    the disk (dd if=/dev/zero of=/dev/sda count=300000) and hit the reboot
+    button (not the command, that gives it a chance to rewrite the disk).
+  Set up partitions (I did ext2 90%, swap rest).
+  If you missed it when you set it up or it was already setup
+  Select the Linux partition (select and hit enter)
+    Use as: ext2
+    Format the partition
+    Mount point: /
+    Bootable flag: on
+  Select the swap partition
+    Use as: swap
+
+(The base system is installed at this time)
+
+Http proxy: (none) leave blank and continue
+No auto updates
+
+Select and install software:  (extra stuff using apt-get)
+  LAMP, openssh, (print server not needed);
+   You go to a menu driven version of apt-get.
+
+  Configure some of the "extra stuff" so it installs correctly.
+    mysql: root user password "xyzmysql"
+
+Install complete:
+  if the cdrom doesn't get ejected or gets sucked back in
+    alt-F2:
+     eject /dev/cdrom,  remove it from tray
+    alt-F1:
+     select continue (to reboot)
+  else
+    remove cd from tray
+
+If you really want to see what is installed:
+  dpkg --get-selections
+  will report the names of the packages.
+
+WEB SERVER SETUP
+
+Get rid of the mysql database server
+  apt-get -y remove mysql-server mysql-server-5.5 mysql-server-core-5.5
+  (Or whatever version comes up from dpkg --get-selections)
+
+An update will reenable service, so, after the install and after additional
+ packages have been installed/removed:
+  apt-get -y update         # locate the latest versions
+  apt-get -y dist_upgrade   # install the latest versions
+
+Get extra shells
+  apt-get -y install tcsh ksh zsh
+
+  apt-get -y ntp
+
+Set up the time service
+ edit /etc/ntp.conf  
+   server 134.139.248.10
+   server 134.139.248.8
+  Note: the clock will jump if the machine is on the network at boot,
+  (i.e., when ntpd starts) but will not jump if it is attached after boot.
+
+configure the apache web service
+ enable ~ directories
+  cd /etc/apache2/mods-enabled
+  ln -s ../mods-available/userdir.load
+  ln -s ../mods-available/userdir.conf
+ enable https
+  cd /etc/apache2/mods-enabled
+  ln -s ../mods-available/ssl.load
+  ln -s ../mods-available/ssl.conf
+  cd /etc/apache2/sites-enabled
+  ln -s ../sites-available/default-ssl
+ enable cgi scripts.
+  vi /etc/apache2/mods-enabled/mime.conf
+   uncomment "AddHandler cgi-script .cgi
+  vi /etc/apache2/sites-available/default (and default-ssl)
+  vi /etc/apache2/mods-enabled/userdir.conf
+   append to "Options"  "ExecCGI"
+   set UserDir to htdocs
+   switch the /Directory from /homes to /net/*
+ enable server side includes:
+  cd /etc/apache2/mods-enabled
+  ln -s ../mods-available/include.load
+  vi /etc/apache2/mods-enabled/mime.conf
+   uncomment "AddType text/html .shtml" and "AddOutputFilter INCLUDES .shtml"
+    (12.04 uncommented by default)
+  vi /etc/apache2/mods-enabled/userdir.conf
+   append to "Options"  "Includes"
+    (12.04 replaced IncludesNoExec)
+ allow your default file to be a server side include
+  vi /etc/apache2/mods-enabled/dir.conf
+    append index.shtml to the DirectoryIndex list
+ activate (if testing the install incrementally)
+  apache2ctl restart
+
+set up the site home page
+  vi /var/www/index.html
+    (put something reasonable in this file like "CECS"
+     "all content on this server is in user home directories")
+
+nfs setup
+ apt-get -y install nfs-common autofs
+ vi /etc/auto.master to have:
+  /net/d1 /etc/auto.d1
+  /net/d2 /etc/auto.d2
+  /net/d3 /etc/auto.d3
+ vi /etc/auto.d1 (d2 and d3) to have:
+  u1 -soft,intr d1.cecs.csulb.edu:/u1
+  u2 -soft,intr d1.cecs.csulb.edu:/u2
+  u3 -soft,intr d1.cecs.csulb.edu:/u3
+  u4 -soft,intr d1.cecs.csulb.edu:/u4
+  u5 -soft,intr d1.cecs.csulb.edu:/u5
+  u6 -soft,intr d1.cecs.csulb.edu:/u6
+  u7 -soft,intr d1.cecs.csulb.edu:/u7
+ reboot to activate
+ Alternatively, download from tiger: 
+  wget http://tiger/export/ubuntu/autofs.tgz
+  comment out aardvark, charlotte and a1 from auto.master and
+   remove references to the backup servers
+
+yp setup
+ apt-get -y install nis
+ vi /etc/defaultdomain to contain:
+  cecsyp
+ vi /etc/yp.conf   (set brain as the ypserver)
+   ypserver 134.139.249.2
+    during testing, to avoid brain's security blocking, use:
+   ypserver psvr416.cecs.csulb.edu
+ vi /etc/nsswitch.conf:
+   passwd, shadow, group should be "files nis"
+ vi /etc/group (edit, removing former names for the groups)
+   staff:x:10
+   faculty:x:30
+   student:x:40
+
+inetd setup (does not seem to be installed anymore)
+ vi /etc/inetd.conf:
+   Shutdown just about everything, including telnet and the r commands.
+   This is now the default.
+
+sshd setup
+ vi /etc/ssh/sshd_config add:
+  AllowGroups faculty staff configure 
+   the last is temporary
+ limit ssh access to just tech shop
+  vi /etc/hosts.allow   should be the line:
+   sshd,rpc.statd:134.139.249.128/255.255.255.192
+  vi /etc/hosts.deny   should be the line:
+   sshd,rpc.statd:ALL
+
+set the root password
+ passwd root
+  (use the standard linux password format)
+
+remove the configure user
+ login as something other than configure and su to root
+  remove configure from the password and shadow files
+   vi /etc/passwd
+   vi /etc/shadow
+  remove the configure group and all references to configure from the group file
+   vi /etc/group
+  remove configure's home directory
+   rm -r /home/configure
+ or this simpler way of doing all the above
+  deluser --remove-home --remove-all-files configure
+
+DO THE FOLLOWING ONLY WHEN READY TO MOVE THE BOX TO THE SERVER ROOM
+  (No need to do this if building in the server room)
+ configure the network:
+   The names and numbers are negotiated with Larry.
+  vi /etc/hostname
+   prometheus2
+  vi /etc/network/interfaces
+   change the entry for eth0 from dhcp to
+    iface eth0 inet static
+     address 134.139.249.83 
+     netmask 255.255.255.192
+     gateway 134.139.249.65
+
+ Roll over:
+  DO THIS ONLY WHEN READY TO USE THE BOX AS THE MAIN SERVER
+  /etc/hostname
+    change to prometheus (or nike for student server)
+  /etc/network/interfaces
+    change address to 134.139.249.82 (or 134.139.249.66 for student server)

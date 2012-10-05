@@ -1,0 +1,150 @@
+# DHCP server configuration file (/etc/dhcpd.conf)
+# writen 20030526 by malcolm
+# updated 20080814 by malcolm
+# 	
+allow booting;
+allow bootp;
+authoritative;
+option domain-name "cecs.csulb.edu";
+option domain-name-servers 134.139.249.20;
+option routers 134.139.247.193;
+option subnet-mask 255.255.255.192;
+default-lease-time 21600; # 6 hour lease
+max-lease-time 43200;     # max 12 hours
+option ntp-servers 134.139.248.10;
+ddns-update-style none;
+
+  subnet 134.139.247.192 netmask 255.255.255.192 {
+    #range 134.139.247.195 134.139.247.250;
+    range 134.139.247.226 134.139.247.252;
+    #deny unknown-clients;
+    # UNCOMMENT below for network (PXE)boot
+    filename "pxelinux.0";
+}
+   
+   host ecs416lin195 { 
+    hardware ethernet 00:21:5a:24:e4:9a;
+    fixed-address 134.139.247.195;
+}
+   host ecs416lin196 { 
+    hardware ethernet 00:21:5a:23:72:68;
+    fixed-address 134.139.247.196;
+}
+   host ecs416lin197 { 
+    hardware ethernet 00:21:5a:23:6e:de;
+    fixed-address 134.139.247.197;
+}
+   host ecs416lin198 { 
+    hardware ethernet 00:21:5a:23:72:36;
+    fixed-address 134.139.247.198;
+}
+   host ecs416lin199 { 
+    hardware ethernet 00:21:5a:23:71:72;
+    fixed-address 134.139.247.199;
+}
+   host ecs416lin200 { 
+    hardware ethernet 00:21:5a:26:1b:08;
+    fixed-address 134.139.247.200;
+}
+   host ecs416lin201 { 
+    hardware ethernet 00:21:5a:27:0e:3c;
+    fixed-address 134.139.247.201;
+}
+   host ecs416lin202 { 
+    hardware ethernet 00:21:5a:24:b5:9e;
+    fixed-address 134.139.247.202;
+}
+   host ecs416lin203 { 
+    hardware ethernet 00:21:5a:27:0e:5c;
+    fixed-address 134.139.247.203;
+}
+   host ecs416lin204 { 
+    hardware ethernet 00:21:5a:27:0e:48;
+    fixed-address 134.139.247.204;
+}
+   host ecs416lin205 { 
+    hardware ethernet 00:21:5a:23:72:62;
+    fixed-address 134.139.247.205;
+}
+   host ecs416lin206 { 
+    hardware ethernet 00:21:5a:24:b6:b8;
+    fixed-address 134.139.247.206;
+}
+   host ecs416lin207 { 
+    hardware ethernet 00:21:5a:23:71:e0;
+    fixed-address 134.139.247.207;}
+   host ecs416lin208 { 
+    hardware ethernet 00:21:5a:24:e3:78;
+    fixed-address 134.139.247.208;
+}
+   host ecs416lin209 { 
+    hardware ethernet 00:21:5a:27:0d:ce;
+    fixed-address 134.139.247.209;
+}
+   host ecs416lin210 { 
+    hardware ethernet 00:21:5a:24:b6:56;
+    fixed-address 134.139.247.210;
+}
+   host ecs416lin211 { 
+    hardware ethernet 00:21:5a:27:0e:42;
+    fixed-address 134.139.247.211;
+}
+   host ecs416lin212 { 
+    hardware ethernet 00:21:5a:25:83:2a;
+    fixed-address 134.139.247.212;
+}
+   host ecs416lin213 { 
+    hardware ethernet 00:21:5a:27:0c:22;
+    fixed-address 134.139.247.213;
+}
+   host ecs416lin214 { 
+    hardware ethernet 00:21:5a:23:71:aa;
+    fixed-address 134.139.247.214;
+}
+   host ecs416lin215 { 
+    hardware ethernet 00:21:5a:27:06:36;
+    fixed-address 134.139.247.215;
+
+}
+ 
+  host ecs416lin216 { 
+    hardware ethernet 00:21:5a:25:ab:ac;
+    fixed-address 134.139.247.216;
+}
+   host ecs416lin217 { 
+    hardware ethernet 00:21:5a:27:84:da;
+    fixed-address 134.139.247.217;
+}
+   host ecs416lin218 { 
+    hardware ethernet 00:21:5a:27:0e:46;
+    fixed-address 134.139.247.218;
+}
+   host ecs416lin219 { 
+    hardware ethernet 00:21:5a:23:6f:a0;
+    fixed-address 134.139.247.219;
+}
+   host ecs416lin220 { 
+    hardware ethernet 00:21:5a:24:b6:aa;
+    fixed-address 134.139.247.220;
+}
+   host ecs416lin221 { 
+    hardware ethernet 00:21:5a:27:84:7a;
+    fixed-address 134.139.247.221;
+}
+   host ecs416lin222 { 
+    hardware ethernet 00:21:5a:27:0c:44;
+    fixed-address 134.139.247.222;
+}
+   host ecs416lin223 { 
+    hardware ethernet 00:21:5a:25:ab:98;
+    fixed-address 134.139.247.223;
+}
+   host ecs416lin224 { 
+    hardware ethernet 00:21:5a:27:82:b2;
+    fixed-address 134.139.247.224;
+}
+   host ecs416lin225 { 
+    hardware ethernet 00:21:5a:25:ab:96;
+    fixed-address 134.139.247.225;
+}
+

@@ -1,0 +1,120 @@
+It's a completely new machine so u3 and u4 had to be copied over
+Boot from net (instead of CD, this is minor).
+Follow the steps in the install.djv script.
+After the script completes make the following changes.
+
+HOSTNAME (cheetah.cecs.csulb.edu)
+
+rc.d/rc.inet1.conf
+  eth0 netmask 255.255.255.240
+
+Reboot to hard driver.
+mke2fs /dev/sdb1
+mke2fs /dev/sdc1
+/etc/fstab
+ Remove the cheetah entries NFS entries
+ add:
+  /dev/sdb1 /u3 ext2 defaults 1 1
+  /dev/sdc1 /u4 ext2 defaults 1 1
+mount -a
+
+#Setup the home directory soft links, they
+# are nfs mounts in the standard setup
+mkdir /u3 /u4
+cd /net/cheetah
+rmdir u3 u4  (client nfs mount points)
+ln -s /u3
+ln -s /u4
+# Setup the remote mounts links
+mkdir /net/lab /net/aardvark /net/aardvark/u1
+
+On old cheetah save out /etc to /u4:
+Make up an empty directory /u4/cheetah_etc
+tar -cp . | tar -xp -C /u4/cheetah_etc/
+tar up u3 and u4 into /tmp (where djv can get to them)
+On new cheetah, cd /root lftp in the tarballs (use djv on old cheetah)
+
+shutdown, insert the network card and boot
+
+On /u4 there is a directory cheetah_etc from which you
+can copy stuff into  /etc
+
+in /etc
+group
+  add
+   faculty:x:30:
+   student:x:40:
+named
+  copy in named.conf
+   (Had to remove the port entry from the old config)
+  copy in /etc/named directory
+   cd /etc
+   cp -p -r /etc/cheetah_etc/named .
+  chmod a+x /etc/rc.d/rc.bind
+  /etc/rc.d/rc.bind start   (to test)
+netgroup
+  copy in the example line
+  tail -1 /u4/cheetah_etc/netgroup >> /etc/netgroup
+passwd
+  copy in from UID #100 on 
+shadow
+  copy in from UID #100 on
+hosts.deny
+  ALL:ALL
+hosts.allow
+  ALL:134.139.0.0/255.255.0.0
+  ALL:127.0.0.1/255.255.255.255
+ntp.conf
+  server 134.139.248.10
+  Make sure the restricts are removed since we provide time service
+   to other machines.
+  (rc.ntpd is a+x from the basic install)
+exports
+  copy in the exports file
+  chmod a+x /etc/rc.d/rc.nfsd
+  /etc/rc.d/rc.nfsd start   (to test)
+cron.daily/
+  backup.conf: copy in 
+ypserv
+  nisdomainname cecsnet  (set it up manually)
+  /var/yp/Makefile (see /u4/cheetah_var_yp/Makefile)
+  edit the make file, lower the MIN numbers, don't make the unnecessary
+    publickey map
+   MINUID=100
+   MINGID=30
+   shadow # publickey...commented out
+  Fix the missing link
+  cd /usr/lib
+  ln -s /usr/lib64/yp
+  /usr/lib64/yp/ypinit -m
+  edit rc.yp, uncomment the ypserv lines
+  chmod a+x /etc/rc.d/rc.yp   (undo the preboot disable of yp)
+  /etc/rc.d/rc.yp start   (to test)
+  load the databases from the flat files.
+   cd /var/yp
+   make
+rc.d/rc.inet1.conf
+  eth0 134.139.248.17 / 255.255.255.240
+  eth1 134.139.248.2 / 255.255.255.248
+  GATEWAY 134.139.248.1
+rc.d/rc.inet1 add:
+/sbin/route add -net 134.139.248.32 netmask 255.255.255.224 gw 134.139.248.18
+/sbin/route add -net 134.139.248.64 netmask 255.255.255.224 gw 134.139.248.18
+
+
+auto.conf
+  copy in
+  chmod a+x /etc/rc.d/rc.autofs
+rc.d/
+  check: ntp now has a start up file.
+
+reboot, (replace cheetah) and test
+
+/etc/fstab add
+  134.139.248.3:/u1 /net/aardvark/u1 nfs soft 0 0
+
+Set up register and getscore
+ gcc ~volper/accounts/register.c -o /usr/local/bin/register
+ gcc ~volper/testprograms/getscore.c -o /usr/local/bin/getscore
+ chown volper:faculty (both the above)
+ chown 4711 (both the above)
