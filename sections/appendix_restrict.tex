@@ -1,6 +1,8 @@
-\chapter{Limiting Access}
+\chapter{Limiting Access} \label{ap:restrict}
 
-\begin{verbatim}
+\begin{alltt}
+\normalfont
+\singlespacing
 ########################################
 # hosts.allow	This file describes the names of the hosts which are
 #		allowed to use the local INET services, as decided
@@ -33,6 +35,8 @@ ALL:192.168.0.
 # the new secure portmap uses hosts.deny and hosts.allow.  In particular
 # you should know that NFS uses portmap!
 # Deny access to everyone.
-ALL: ALL@ALL, PARANOID # Matches any host whose name does not match its address.
+# Matches any host whose name does not match its address.
+ALL: ALL@ALL, PARANOID 
 ########################################
-\end{verbatim}
+\end{alltt}
+
