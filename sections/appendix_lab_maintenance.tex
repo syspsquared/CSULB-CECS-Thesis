@@ -1,0 +1,131 @@
+\chapter{Lab Maintenance} \label{ap:lab_maintenance}
+
+\begin{verbatim}
+
+#############################
+#!/bin/bash
+# resetX
+
+# get the current time (use in naming backup files)
+TIME=`date +%y%m%d%H%M` # echo $TIME
+#
+
+# save Old Working Directory
+OWD="/net/d2/u5/f/conf"
+
+# make sure we are in HOME directory
+cd ~
+
+# make a directory to save old conf
+SAVE=.oldXconfig.$TIME #echo $SAVE
+mkdir -p $SAVE
+
+for FILE in `cat $OWD/Xrc.confiles`  ; do
+  if [ -e $FILE ] ; then
+     #echo $FILE
+     mv -f $FILE $SAVE/
+  fi
+done
+#ls -rlast $SAVE
+tar -xf ~conf/data/skel.tar
+
+#/bin/rm -rf /tmp/*$USER* >& /dev/null
+#/bin/rm -rf /tmp/.*$USER* >& /dev/null 
+/bin/rm -rf /tmp/.* >& /dev/null 
+/bin/rm -rf /tmp/* >& /dev/null 
+
+if [ -f ~/Desktop/xterm.desktop ] ; then
+	/bin/rm -f ~/Desktop/xterm.desktop
+fi
+if [ -f ~/Desktop/TerminalServer.desktop ] ; then
+	/bin/rm -f ~/Desktop/Terminal\ Server.desktop
+fi
+
+/bin/cp -fv ~conf/Desktop/* ~/Desktop/
+
+
+
+#############################
+#!/bin/sh
+# This script takes in a file of student homes, then cds to each.
+# mv .xinitrc .xinitrc.bak
+v_homefile="$1"
+v_filetomv="./.xinitrc"
+v_logfile="/tmp/mvlog.log"
+
+while read homedir
+do
+  echo "Moving to $homedir" >> "$v_logfile" 2>&1
+  cd "$homedir"  >> "$v_logfile" 2>&1
+  if [ -e "$v_filetomv" ];then
+    echo "mving file $v_filetomv to ${v_filetomv}.bak..." >> "$v_logfile" 2>&1
+    mv "${v_filetomv}" "${v_filetomv}".bak >> "$v_logfile" 2>&1
+  else
+    echo "$v_filetomv in $homedir not found." >> "$v_logfile" 2>&1
+  fi
+done < "$v_homefile"
+
+
+
+###############################
+# /etc/default/rcS
+#
+# Default settings for the scripts in /etc/rcS.d/
+#
+# For information about these variables see the rcS(5) manual page.
+#
+# This file belongs to the "initscripts" package.
+
+TMPTIME=0
+SULOGIN=no
+DELAYLOGIN=yes
+UTC=yes
+VERBOSE=yes
+FSCKFIX=yes
+
+
+
+#############################
+#!/bin/bash
+
+# move to home
+cd ~
+
+# now, move down one
+cd ..
+
+echo "This will replace ALL the file in your home directory with the the ones from the "
+echo "backup server.   The file servers are backed up nightly so the files will be from "
+echo "the last backup.  This may not be what you want, so be VERY SURE before you "
+echo "answer 'yes'!"
+
+
+
+echo "Are you sure you want to do this? (answer with 'yes'!!)"
+read ANSWER
+if test  $ANSWER != "yes" 
+then
+	echo "You did not answer 'yes'."
+	echo "good bye"
+	exit 1
+fi
+
+echo "Are you REALY sure? (answer with 'yes'!!)"
+read ANSWER
+if test $ANSWER != "yes" 
+then
+	echo "You did not answer 'yes'."
+	echo "good bye"
+	exit 1
+fi
+
+echo "Okay here we go ...."
+echo "This could take a while"
+
+# call retrive for home directory
+/usr/local/bin/retrieve -f $USER
+
+# move back to home
+cd ~
+
+\end{verbaim}

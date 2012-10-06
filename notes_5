@@ -1,0 +1,569 @@
+Overall:
+The proper use of tense needs to be fixed in many places.
+Past tense: things we have done.
+Present tense: things we are doing (and may have also done in the past).
+Future tense: things we would consider (like to) do.
+In many places the tense is ambiguous or incorrrect, particularly for
+things that we have done or are doing.
+Make it clear which items we do and which we don't.
+
+Detail:
+ The capitalization in the following text is to emphasize the changes. I
+couldn't capitalize deletions, because they aren't there any more.
+
+Chapter 1 Overview:
+Page 1:
+Each of the techNICIANS specializes in certain topicS.
+  -spell our words, do not imply each technician has only one speciality
+  -also standardize on either "technicians" or "lab staff" as the word to use
+
+Some of these are beyond our control while FOR others we HAVE FOUND
+effecient solutions.
+  -sentences don't end in prepositions, make it clear this is something
+   we've done.
+
+The Problem:
+Page 2:
+The first sentence refers to "lab images"; which haven't been mentioned yet.
+ -Add a first section "The need for bulk installs". With this many machines
+  installing them individually isn't too time consuming to be practical.
+
+Requests for changes...build the lab IMAGES come ...
+
+In any case...for the TECHNICIANS because...
+ -the "us" was too far from to whom it referred
+
+"We also have a relative fast...the semester starts" REPLACE
+Although we can re-clone the labs during the semester, cloning
+requires prohibiting access to the lab during the cloning process which
+denies access lab access to classes.
+
+...ignore requests until the next iteration of lab imaging.
+  -deletions, simplified the sentence
+
+Mixed Environment:
+Page 3
+Add: "and several specialty labs." or "In addition the department supports
+several specialty labs"
+ -We do mention them later, but I think we need to mention them here.
+
+Our servers THAT SUPPORT THE LABS are also running different...
+
+Frequent Software Updates:
+Page 3:
+ Make this part of the new first section "bulk installs"
+
+Updates while courses...are RISKY because
+  -difficult is the wrong word here
+
+Partial Solution:
+Page 4:
+Dispite the problems we do as much as we can...
+ -simplify the sentence
+
+In the chapter on "Documentation Solution,"  I will describe...
+ -more formal way of wording it
+
+Chapter 2 Documentation:
+
+Overview
+Page 5:
+...created a user CALLED "conf"...
+
+The user conf WAS created...
+ -the tense should imply we have already done this, not that we could do it.
+
+...network user account, it IS available...
+ -tense
+
+Student Faculty help
+Fix Utilities
+
+Page 10:
+FOR EXAMPLE, a script called "resetX" EXISTS in conf's home directory
+"~conf/" and IS world executable.
+ -tenses is wrong, the ~disappeared
+
+Page 11:
+If the script is somewhat more permanent, it is easier to make the script part
+of th master image which will causes copies of the scripts to be found
+on every machine."
+###
+Print Servers:
+Overview:
+Page 12
+--Replace the starting sentence of the overview
+Since the user accounts are available on all machines in all labs,
+servers are essential to allow an (almost) seamless transition of students
+between labs.
+WE HAVE DISCOVERED THAT HAVING A SERVER IN EACH LAB HAS DISTINCT ADVANTAGES
+OVER HAVING ONLY CENTRAL SERVERS.
+
+This server should PROVIDE a variety of SERVICES to client machines in the lab.
+
+In the CECS labs, the OLDEST AND most obvious function for these servers was
+printing, so THEY ARE CALLED print servers AND HAVE NAMES with the...
+by the room number, SUCH AS psvr408.
+
+DELETE the "Printing is.. "sentence
+
+IN ADDITION TO PRINTING THESE SERVERS ALSO PROVIDE: DHCP, TFTP, PXE boot,
+Samba...
+ -note: although they run NFS they do not provide NFS service to the lab.
+
+DHCPD server
+page 12
+ --the sentence structure would be better as
+EITHER the DHCPD SERVER has to be on the same subnet as the clients OR
+THE ROUTERS NEED TO BE CONFIGURED TO ACT AS DHCP FORWARDERS.
+
+IN EITHER CASE clients send...
+ -Delete sentences "It is possible...layer 3...protocol. This protocol...
+   returned"
+
+we prever to keep DHCPD AS WELL AS MANY OTHER SERVICES on the same subnet
+TO RELIEVE BANDWIDTH CONGESTION GOING INTO THE MAIN SERVERS AND THAT in the
+event...lost, THE LAB can still at least partially function locally.
+
+In addition, ...
+  The wording in this paragraph needs to be fixed. The server doesn't have
+  to hand out addresses based on MAC addresses, we have it do that because
+  it helps our maintance. That isn't said properly in this paragraph.
+
+page 13
+The sentence:
+ The disadvantage to this is...
+ -I'm not sure what you are trying to say here, needs a rewording.
+
+Netbooting
+I would reword the first sentence as:
+Cloning has become one of the most important uses of the print servers
+in the labs.
+
+DHCP is required...
+ DHCP also supports the bootp protocol which is the protocol used to boot.
+
+Network File System
+page 14
+Linux client COULD mount the ...
+ -emphasizing more that don't. Print servers don't export so we aren't setu
+ to so this.
+
+samba -> Samba (capitalize it always)
+
+The Samba server requires a fair amount of CPU, memory resources AND
+NETWORK BANDWIDTH to do ...
+SO WE KEEP THE SMB TRAFFIC LOCAL TO THE LABS AND have equi9pped the Print
+Servers WITH quad core processors..
+
+Supposedly, IT can in certain
+ --I think it should be singular
+
+Norton Ghost
+page 15
+Norten Ghost is NET booted...
+ -I'm pretty sure we are net booting it at this point.
+
+EITHER METHOD IS problematic on...in order to INSTALL CORRECTLY.
+
+
+This heirarchy...
+ -also reduces the amount of net traffic and requests handled by the core
+
+Filesystem Management
+Background:
+page 16
+export user home directorIES with...
+
+Home Directory Changes:
+page 17
+Files that functioned in Fedory BROKE various features..
+ -It "happened" state it that way.
+
+THESE scriptS need to have a lot...
+#####
+Automount
+page 18
+(This generates unnecessary network traffic when a mount is not being used.)
+ -Delete the sentence, it's not true.
+
+If a mount fails, FOR EXAMPLE THE FILE SERVER GOES OFFLINE, THE CLIENT will
+not remount...
+
+Malware
+page 19
+Further action can be taken ONLY by the faculty AND/OR ADMINISTRATORS.
+
+Lab Printing
+
+Printing Setup
+page 21
+...(which is descripted in THE SECTION ON PRINT SERVERS)...
+ -doesn't hurt to be specific here
+
+page 22
+ "paperd" and "prmaster" in quotes the first time used
+
+ -QUOTE HINT  ``prmaster", the `` gives you the opening quote mark.
+
+TO BE ABLE TO CREDIT A USER'S PAPER ACCOUNT A USER MUST BE A MEMBER OF
+THE PRMASTER GROUP which has the ability to run the modpaper exam
+AND MUST HAVE BE ALLOWED ACCESS TO THE SERVER ON WHITH THE MODPAPER COMMAND
+IS HOUSED.
+
+--The last two sentences of the last paragraph in this section are not clear.
+-Is what you want to say that the default printer is in the same room as
+ the machine, but they are allowed to send it elsewhere.
+
+Printing issues
+page23
+More importantly we only track paper...
+ -you can't track the other stuff, however you could charge for it on
+  a per page basis. It's that we were only recoupping the paper cost
+  and not the other costs that hurt.
+
+This SHOULD give us a significant portion...
+
+However, this cost IS transferred
+ -I think that's a better wording
+
+ -Say something about Unix printing not yet being handled by this system.
+
+Chapter 3 LAB INSTALLATION
+Lab Images
+Overview
+page 24
+-Be clear that Linux is rebuilt every semester, Windows is upgraded
+ every semester.
+
+basically clones of EITHER THE WINDOWS MASTER IMAGE OR THE LINUX MASTER
+IMAGE.
+
+This IMAGE is then cloned.
+ -obvious there is a cloning process
+
+Details on cloning can be found in the section ON THAT TOPIC.
+ -Does that sound better?
+
+input from faculty and students and from OUR EXPERIENCE IN past semesters.
+
+Our cycle involves building THE IMAGE during
+
+taught WE REBUILD THE MASTER IMAGE.
+THEN WE CLONE THE LAB ON Friday, BECAUSE THAT DAY IMPACTS THE FEWEST CLASSES,
+
+page 25
+less of an issure if we got more EARLY feedback
+we have not FOUND A SOLUTION TO THAT PROBLEM.
+
+(As a workaround... This mignt not...instructor)
+ -delete these two sentences. Instead:
+STUDENT REQUESTS ARE CONSIDERED AND WILL BE USED SUBJECT TO FEASIBILTY
+AND SECURITY CONCERNS
+
+Booting:
+HOWEVER, FOR the chosen distribution, Ubuntu, WE HAVE NOT FOUND A WAY
+TO netboot to a CD.
+
+Once the CD start
+ -redo the English in this sentence
+
+running. LATER WE ADD THE VARIOUS PACKAGES.
+
+Setting up administr
+
+create a non-root ADMISTRATOR account.
+ -you could explain sudo priviledges here.
+
+This is because Unix...
+ -I'm not sure about this sentence.
+ -Having an admin login is a less common practice now,
+  but I wouldn't say "should never"
+
+page 26
+
+To work around this, WE createD an account
+
+After the in stall is finished, WE use
+ -make it clear these are our practices now
+
+at least 80 gigabytes.
+ -large seems redundant here
+
+packages, WE REMOVE ANY unneeded..
+brought in DURING THE INSTALL PROCESS.
+
+Automount
+page 28
+
+directory. HOWEVER UOPGRADING IN THE PAST HAS INVALIDATED OUR CONFIGURATION
+FILE SO WITH EACH NEW IMABE WE NEED TO CONFIRM THAT THE CONFIGURATION
+STILL WORKS AND FIND HOW TO MODIFY THE CONFIGURATION IF IT DOESN'T.
+
+Groups
+about conflicts.
+ --emphasize "they do now"
+
+Limiting Student
+page 29
+
+account information, PARTICULARLY THE NAME INFORMATION SINCE THIS IS HOW
+WE IDENTIFY STUDENTS.
+
+System Log Configuration
+
+Systm logs ARE usually RETAINED for 30 days, however, TO MATCH OUR ENVIRONMENT,
+we set the retention time to a semseter.
+
+Local Support Commands
+
+page 30
+appropriate place, set theri permissions AND MAKE SURE OTHER UPGRADES HAVE
+NOT BROKEN THEM.
+
+more secure route WOULD BE to use
+ -emphasizes we haven't done it.
+
+Login Scripts
+page 31:
+One script sets the environment variable ``hostname"..system hostname
+FOR BACKWARDS COMPATIBILTY REASONS.
+
+a users diskspace AND DISPLAYS A warnign if it IS to low.
+
+Miscellaneous Tweaks
+page 32
+
+THESE TWEAKS CHANGE EACH SEMESTER so I will provide some common examples.
+
+Quotas ON OUR STUDENT ACCOUNTS are at 512MB,...
+
+broken, so we MODIFIED THE SYSTEM TO USE AN OLDER VERSION.
+
+Considerations
+
+We also recompileD our custom...
+of Ubuntu THE LIBRARIES THAT SUPPORE 32-BIT CODE WERE NOT IN THE DEFAULT
+INSTALL.
+
+Add a summary:
+ Overall, each semester, the new master image requires considerable effort
+ to ensure it is adequate for use in our labs.
+
+Cloning
+page 33
+ (The worst situation...This takes...worth) 
+ -delete two sentences and replace with
+ With the number of machines we have present in the labs, installing
+ each machine individually would require far more staff time than we
+ have available and , because of human error, would lead to inconsistencies
+ between lab machines.
+
+Setup and Prep
+
+We TRIED havING a central server
+However, THAT CAUSED all work...bandwith TO THE CENTRAL SERVER AND slowED
+the proecess
+ -make it clear we tries this
+
+Deploy
+page 34
+Another options WE SHOW IS to boot from network
+
+(The image to clone with)
+ -This sentence is unclear (English)
+
+It then setS the default gateway
+This COULD require a second argument to the script, BUT FOR CONVENIENCE
+WE USE A script for each lab...
+  -make clear which way we do it
+THE SCRIPT then runS filesystem tools
+lilo, is run to INSTALL THE BOOT LOADER INTO THE BOOT SECTOR OF THE HARD DRIVE.
+
+not yet configured to be unique.
+ --words deleted "unique clone" is a contradiction.
+
+page35
+configuration files ARE changed to update
+so we document them ONLINE IN THE CONF DIRECTORIES.
+THE SRIPT editS the ``/etc/printcap" file and setS the DEFAULT printer
+TO BE THE ONE IN THE ROOM IN WHICH THE workstation IS LOCATED.
+
+Cloning
+To do so, every workstation would
+ -I think we've already done this, future tense is in appropriate here.
+
+switches and thig MIGHT cut the time down
+ -our bottleneck might be the speed of the file system on the boot server.
+
+-Watch out here, QOS won't change total time to do the install, it might
+ even out the times for each machine. But the overhead of QOS might just
+ raise the total time slightly.
+
+page 36
+-last line
+tested them yet AND FATAL DRAWBACKS MAY BE DISCOVERED IN TESTING.
+
+Chapter 4 Maintenacne
+
+Remote Commands
+page 37
+
+not necessarily a bad ieda AND HAS IN THE PAST BEEN USED IN OUR LABS.
+
+page 38
+
+As of this writting, WE USE THE Secure Shell...
+
+middle attacks AND MUCH MORE DIFFICULT TO SPOOF THAN THE RSH OR TELNET METHODS.
+
+authorized keys are used BECAUSE TYPING THE PASSWORD A HUNDRED TIMES IS AN
+INTOLERABLE BURDEN ON THE ADMINISTRATOR AND SLOWS THE WHOLE PROCESS DOWN.
+
+Pushed your matching key..
+ -not an English sentence, fix
+
+context.
+ACTUALLY, BECAUSE WE PLAN TO DO PUSHES WE DON'T PUSH KEYS, INSTEAD WE
+BUILD THEM INTO THE MASTER IMAGE.
+
+Unclogging
+Background
+page 40
+have the potential, IF DONE INCORRECTLY, to overload
+
+Limiting
+page 41
+ --in this section, spellout temp as temporary.
+
+Users  CAN still write to temporary directories ON THE LOCAL MACHIN
+and fill those up, so it MIGHT BE useful to ...
+IF IT BECOMES NECESSARY a cronjob COULD BE CREATED to delete excess
+tempORARY files. HOWEVER, THIS PROBLEM IS REARE SO WE HAVEN'T BOTHERED
+TO BUILD SUCH A CAPABILITY.
+
+we have found it SIMPLER FROM AN ADMINISTRATION...
+
+Simplest:
+For many of these issues, A VERY SIMPLE SOLUTION IS to
+
+This clearS all orphaned processes, interruptS...resetS
+ -present tense
+
+WE HAVE DONE THIS by making an...
+
+The reboots take place..night AT A IME WHEN THE LABS ARE CLOSED SO IT IS
+UNLIKELY STUDENTS WILL BE USING THE MACHINES.
+
+Files system checks (FSCK) occur occasionally on reboot.
+--Redo as
+On Ubuntu the default if the file system check detects an error is to
+halt the boot and go into single user mode so the administrator can
+examine each error message before allowing the file system check to fix it.
+This visual examination doesn't need to be done in our labs where most such
+errors are because a student undid the power plug so we have modified the
+behavior to tell the file system check to automatically fix all errors.
+
+Verbose mode...
+
+We have also found booting in verbose mode is very helpful...for
+troubleshooting machines SO WE CONFIGURED OUR MACHINES TO THAT BEHAVIOR.
+
+Local repostitory
+page 44
+We do not have a set of instructions
+ -drop the Unfortunatlely
+
+For security reasons, our labS ARE
+ -we have more than one lab
+
+can break course curriculum SOFTWARE.
+ -The curriculum is good, the software is broke.
+
+
+###
+Chapter 5 Specialty labs:
+
+page 46
+The SPECIAL labs we have covered.
+
+System Administration Lab
+ - this should be labeled as a section heading, it's part of the text.
+
+teaching student'S HOW TO BE system...
+machines AND ARE VERY INEXPERIENCED. They have a huge risk of causing damage
+AND OF GETTING HACKED.
+
+tools locally AND IS DESIGNED TO BE CONFIGURED BY A PROFESSIONAL, WHICH
+IS WHAT OUR STUDENTS ARE SUPPOSED TO BECOME.
+
+becaause it ALLOWS administrators to do everything manually.
+
+The sysadmin labe USES more than one subnet in the lab
+FOR INSTRUCTIONAL PURPOSES.
+
+This division separateS  the ALB CORE servers from the
+STUDENT ADMINISTRATED SERVERS AND ALLOWS THE INSTRUCTOR TO ASSIGN PROJECTS
+INVOLVING SETTING UP SERVERS IN THE PRESENCE OF ROUTERS.
+
+By dividing the subnets up, WE GAIN THE ADDED ADVANGATE THAT, they...
+entire lab, and will 
+it is MORE manageable
+
+OUR CONFIGURATION also giveS the...
+
+--merge 2 sentences
+Because the lab cannot talk to the core servers for the rest of the labs, the
+sysadmin lab USES its own set of accounts, its own core servers, its
+own master image and IS cloned separatedly
+
+assignment in the labs IS FOR TH STUDENT TO rebuild the image from scratch
+on THE SERVER THE STUDENT ADMINISTERS.
+THIS COURSE,cannot be too comples, BUT IT CAN show...
+
+Network Lab
+page 48
+2 way firewall IS used
+
+issues THAT OCCUR with student
+
+Cluster:
+This is not absolutLY
+
+page 49
+The MACHINES IN THIS LAB should have a very barebones
+
+page 50
+Although CECS has HAD a dedicated cluster occasionally...
+
+Crossplatform
+Background
+page52
+In addition, THE CHOICE OF PLATFORMS IS OFTEN DICTATED BY PERSONS OTHER
+THAN THE SYSADMINS.
+
+Centralized
+page 53
+WE HAVE MADE many attempts at ACHIEVING compatibility and we are currently
+looking into ANOTHER one, but no smooth tool has YET been made...
+
+an NIS SERVER while Windows clients MUST BIND THROUGH ACTIVE DIRECTORY.
+THUS WE NEED TWO TYPES OF AUTHENTICATION NIS AND AD.
+
+that is USED to create their user accounts
+
+with the COMMON ACCOUNTS in place
+
+page 54
+printservers which is described IN DETAIL in the...
+
+page 55:
+
+oplock FOR WHICH NFS does not HAVE AN EQUIVALENT CAPABILITY.
+
+printservers fake oplocks
+
+Putty
+
+
+Aple some

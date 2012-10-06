@@ -1,3 +1,4 @@
+#############################
 #!/bin/sh
 # This script takes in a file of student homes, then cds to each.
 # mv .xinitrc .xinitrc.bak
