@@ -1,3 +1,6 @@
+#############################
+#auto.master - ubuntu
+
 /net/aardvark /etc/auto.aardvark
 /net/d1 /etc/auto.d1
 /net/d2 /etc/auto.d2

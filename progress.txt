@@ -62,17 +62,18 @@ D-printservers
 -filesystem management
 
 Nallely review:
+D-Appendix
 D-intro
 -unclogging
--documentation solution
+D-documentation solution
 -ssh push
--Student faculty help
+D-Student faculty help
 -Lab printing
 -specialty labs
 -cloning
 -lab images
--printservers
+D-printservers
 -Crossplatform considerations
 -local repository
--filesystem management
+up to automount -filesystem management
 -Conclusion
