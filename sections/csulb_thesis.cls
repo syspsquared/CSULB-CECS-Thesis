@@ -245,6 +245,7 @@
    HAVE APPROVED THIS THESIS \\
    \vspace{12pt}
    \MakeUppercase{\@title} \\
+   \vspace{12pt}
     By \\
     \@author \\
     %  \vspace{12pt}
