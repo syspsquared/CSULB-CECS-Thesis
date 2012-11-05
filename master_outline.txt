@@ -4,8 +4,11 @@ Order:
 
 Chapter 1: Introduction
 Section: 
-overview
-The problem
+The problem 
+
+section:
+Case study: CECS labs
+overview of cecs labs
 
 Chapter: Documentation solution
 section: lab documentation
