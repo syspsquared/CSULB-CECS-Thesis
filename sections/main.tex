@@ -145,7 +145,7 @@
 \signaturepage
 % \include{acknowledgement}
 \tableofcontents 
-%\listoffigures
+\listoffigures
 %\listoftables
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -187,12 +187,13 @@
 \include{conclusion}
 
 
+%These are in a different directory. Hence the input.
 \appendix
-\include{appendix_lab_infrastructure}
-\include{appendix_lab_installs}
-\include{appendix_lab_maintenance}
-\include{appendix_restrict}
-\include{appendix_special}
+\input{../appendices/appendix_lab_infrastructure}
+\input{../appendices/appendix_lab_installs}
+\input{../appendices/appendix_lab_maintenance}
+\input{../appendices/appendix_restrict}
+\input{../appendices/appendix_special}
 
 %\include{appendix_a} %-Use this to make a thesis office approved TOC, LOF, and LOT
 %\include{appendix_b} %-Use this to make a thesis office approved TOC, LOF, and LOT

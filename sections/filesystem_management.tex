@@ -17,7 +17,17 @@ Total space for network storage is highly limited in the CECS labs.  Although ha
 We use the automount tool on our workstations and servers to mount file shares from our core fileservers.  The automounter has several advantages over the classic method of relying on the file system table (fstab).  The fstab mounts immediately from when the /etc/fstab is read on system startup.  This uses system resources when a mount is not being utilized.  In addition, if a mount fails, it will not remount until either a system administrator (sysadmin) remounts it manually or the system restarts.  The automounter addresses both these issues.  It runs as a daemon in the background and waits for NFS requests by other processes.  It handles the given request and only mounts the file share that it needs to.  In addition, if the mount fails for some reason, it actively attempts to mount again in case there was a random network issue.  The /etc/auto.master configuration file governs the automounter's behavior.
 
 \subsection{Backups}
-We have two stages of backups.  One backup is done nightly to a set of file server clones.  These clones have the same hard drive and export configurations as the main file servers.  Though it has never been necessary, theoretically, if a file server goes down, we need only change the hostname of the backup to get it up and running again.  The other backup is done every Saturday to a set of hard drive arrays attached via a Small Computer System Interface (SCSI) cable.  Both backups are done with the tar command to keep things simple.  Because this system is so uncomplicated, it is simple to maintain and troubleshoot.  Students are able restore files from backup by running the "retrieve" command and restore their entire home directory with the "shotgun" script\footnote{A copy of the shotgun script can be found in Appendix~\ref{ap:lab_maintenance}.}.
+We have two stages of backups.  One backup is done nightly to a set of file server clones.  These clones have the same hard drive and export configurations as the main file servers.  Though it has never been necessary, theoretically, if a file server goes down, we need only change the hostname of the backup to get it up and running again.  The other backup is done every Saturday to a set of hard drive arrays attached via a Small Computer System Interface (SCSI) cable.  Figure~\ref{fig:FileserverLayout} shows our fileservers and backup fileservers.
+
+\begin{figure}
+  \begin{center}
+    \scalebox{0.7}{\includegraphics{../figures/FileserverLayout.png}} 
+  \end{center}
+  \caption{Core Fileserver Layout}
+  \label{fig:FileserverLayout}
+\end{figure}
+
+Both backups are done with the tar command to keep things simple.  Because this system is so uncomplicated, it is simple to maintain and troubleshoot.  Students are able restore files from backup by running the "retrieve" command and restore their entire home directory with the "shotgun" script\footnote{A copy of the shotgun script can be found in Appendix~\ref{ap:lab_maintenance}.}.
 
 Though they do require periodic checks by our technicians, their simplicity makes our file servers the most stable point of our environment.  Unfortunately, due to higher space demands, their current capacity is quickly becoming insufficient.  Likely, once decommissioned, we will have no more file storage unless funding is appropriated for more space.  Without file storage, students will have to procure their own space either from their own media or from an online provider.  In either case, they will also have to find their own backup procedure.  Whatever solution they find, it will most likely not be seamless with our environment. 
 
