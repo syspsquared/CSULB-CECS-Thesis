@@ -161,26 +161,10 @@
  \begin{center}
    \MakeUppercase{\@title}
    \vfill
-   A THESIS \\
-   Presented to the \@department \\
+   \@department \\
    California State University, Long Beach \\
    \vfill
-   In Partial Fulfillment \\
-   of the Requirements for the Degree\\
-   \@degree \\
-   \vfill
-   Committee Members: \\
-   \begin{singlespace}
-   \@firstmem \\
-   \@secondmem \\
-   \@thirdmem \\
-   \end{singlespace}
-   College Designee: \\
-   \@deanname \\
-   \vfill
-   By \@author \\
-   \@bachelor, \@bacheloryear, \@undergraduniv \\
-   \@gradmonth \ \@gradyear
+   By \@author 
  \end{center}
  \end{titlepage}
 }

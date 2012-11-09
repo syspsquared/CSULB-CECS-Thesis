@@ -46,12 +46,14 @@
 %%                 Date: 9/1/2012 started
 %% =====================================================================
 
-\documentclass[12pt]{csulb_thesis}
+\documentclass[12pt]{report}
 %\documentclass[12pt]{report}  %% regularly use this
 \usepackage{amsmath}   %% mainly to use align environment
 \usepackage{amssymb}   %% to use \boldsymbol
 \usepackage{times}
 \usepackage{alltt}
+\usepackage{setspace}
+\onehalfspace
 %\usepackage{txfonts}
 %%% txfonts converts default CM fonts to the followings
 %%  Computer Modern Roman      -->  Times
@@ -81,7 +83,6 @@
 
 \nonstopmode  % Keep compiling even when errors occur
 
-
 %% ----------------------------------
 %%            Newcommands          %%
 % \newcommand{\vect}[1]{\boldsymbol{#1}}  % vector (bold symbol)
@@ -92,38 +93,42 @@
 % \newcommand{\myA}[1]{A$({#1})$} %A(t), the acoustic signal from the microphone
 % \newcommand{\myB}[1]{B$({#1})$} %B(t), a signal N times the freq of A(t)
 \newcommand{\tab}{\hspace*{1.5em}}
+\renewcommand{\section}{\@startsection{section}{1}%
+   {0pt}{0.0ex \@plus 0.2ex \@minus 0.2ex}{1pt}%
+   {\centering\normalfont\normalsize\@sechead@underline}}
 
 %% ----------------------------------
 
 
 %% ----------------------------------
 %%          Author's Info          %%
-\title{Efficiently Managing the Computer Engineering and Computer Science Labs}
+\title{Common Server Vulnerabilities and How to Secure Them}
 \author{Nathan Pickrell}
-\gradmonth{December }  % month & year of the graduation
-\gradyear{2012}  % month & year of the graduation
-\department{Department of Computer Engineering and Computer Science} % department
-\degree{Master of Science} % CSULB degree
-\bachelor{B.S.}  % bachelor degree (abbreviated)
-\bacheloryear{2010}  % The year bachelor degree was given
-\undergraduniv{California State University, Long Beach} % university where the degree was earned
+\date{December 2012}
+%\gradmonth{December }  % month & year of the graduation
+%\gradyear{2012}  % month & year of the graduation
+%\department{Department of Computer Engineering and Computer Science} % department
+%\degree{Master of Science} % CSULB degree
+%\bachelor{B.S.}  % bachelor degree (abbreviated)
+%\bacheloryear{2010}  % The year bachelor degree was given
+%\undergraduniv{California State University, Long Beach} % university where the degree was earned
 %% ----------------------------------
 
 
 
 %% ---------------------------------%%
 %%       Thesis Committee           %%
-\firstmember{Dennis Volper, Ph.D. (Chair)} %%% Don't forget to put (Chair) at last
-\deptfirst{Computer Science}
+%\firstmember{Dennis Volper, Ph.D. (Chair)} %%% Don't forget to put (Chair) at last
+%\deptfirst{Computer Science}
 
-\secondmember{Kenneth James, Ph.D.} 
-\deptsecond{Computer Science}
+%\secondmember{Kenneth James, Ph.D.} 
+%\deptsecond{Computer Science}
 
-\thirdmember{Tracy Maples, Ph.D.} 
-\deptthird{Computer Science}
+%\thirdmember{Tracy Maples, Ph.D.} 
+%\deptthird{Computer Science}
 
-\deanname{Burkhard Englert, Ph.D.} 
-\deandept{Coordinator of Graduate Programs, College of Engineering}
+%\deanname{Burkhard Englert, Ph.D.} 
+%\deandept{Coordinator of Graduate Programs, College of Engineering}
 %% ----------------------------------
 
 
@@ -150,7 +155,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%    This is manually inserted TOC entry!        %%
-\addtocontents{toc}{\protect\contentsline{chapterhead}{\chaptername}{}{}}
+%\addtocontents{toc}{\protect\contentsline{chapterhead}{\chaptername}{}{}}
 %% the last {} may be removed if `hyperref.sty' is NOT used.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -166,7 +171,15 @@
 
 
 \clearpage \pagenumbering{arabic}
-%\include{introduction}
+\include{introduction}
+\include{related_work}
+\include{outline}
+\include{dos}
+\include{authentication}
+\include{privileges}
+\include{encryption}
+\include{physical}
+\include{best_practices}
 %\include{intro_to_problem}
 %\include{documentation_solution}
 %\include{student_faculty_help}
