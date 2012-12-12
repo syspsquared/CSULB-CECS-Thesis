@@ -2,12 +2,6 @@
 \section{The Problem} \label{sec:the_problem}
 Educational lab environments are plagued by a variety of issues not present in other IT environments.  
 
-# Describe the problem that your case study solved. Not all this faculty garbage.  
--automation of deployment. how to make all machines clones without going to every machine or relying on contract. 
--crossplatform issues
--special labs that don't fit with main labs.
--Documentation lacking or scattered
--Handling of student files and media. 
 
 \subsection{Limited Faculty Testing}
 One of the main difficulties we face is a lack of faculty feedback during the architectural phase of lab builds.  Requests for changes pre-build come sparingly from a small handful of faculty.  Most faculty will wait until a week before the semester starts before making change or update requests.  Some of them will even wait until the semester starts.

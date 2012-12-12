@@ -1,0 +1,5 @@
+\thispagestyle{empty}
+
+To run effectively, the Computer Engineering and Computer Science (CECS) labs require efficient management. The technicians maintaining these labs have many issues they must deal with, from difficulties managing faculty requests to frequent software updates. This paper documents how the labs are managed and what potential improvements can be made. 
+
+This paper shows how the documentation is maintained, how the lab infrastructure is set up, how the technicians managing the lab build master lab images, how all of the workstations in the lab are cloned, and how some maintenance is handled.  Additionally, this paper also describes some of the specialty labs provided for courses with specialized topics. 
