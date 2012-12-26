@@ -1,38 +1,47 @@
 \chapter{Introduction} \label{ch:introduction}
 \section{The Problem} \label{sec:the_problem}
-University lab environments have a very different set of problems to manage.  Most work IT environments care about such things as a stable email system, security from attacks on the outside, theft of confidential information from employees on the inside,
+%# Describe the problem that your case study solved. Not all this faculty garbage.  
+University lab environments have a very different set of problems to manage than other Information Technology (IT) environments.  Most work IT environments care about such things as a stable email system, security from attacks on the outside, theft of confidential information from employees on the inside, and creating a permission hierarchy to limit which resources employees can access.  
 
-# Describe the problem that your case study solved. Not all this faculty garbage.  
--automation of deployment. how to make all machines clones without going to every machine or relying on contract. 
--crossplatform issues
--special labs that don't fit with main labs.
--Documentation lacking or scattered
--Handling of student files and media. 
+%-Limiting what students can do while still enabling them to do coursework. 
+%-Limitations to faculty. 
+
+Despite differences, university lab environments and other IT environments share the two largest overall problems.  One of the problems is scalability.  Since IT staff is highly limited as a result of being budgeted as a limited benefit resource, solutions to manage the lab environments must scale to an arbitrary environment size.  A single technician may be able to build and configure a handful of machines in a short amount of time, but university labs rarely consist of only a handful of machines.  Often, classrooms hold dozens of students that must be using each machine separately.  In large education environments, especially those in technical fields or requiring technical tools, the number of machines to manage can be in the hundreds.  To build and maintain all of them one by one quickly becomes impossible without either increasing the staff to a very expensive size or by managing them with a process that scales to large sizes.  
+
+%-crossplatform interoperability. 
+The other main issue facing lab environments is crossplatform interoperability.  Different companies 
+
+%-automation of deployment. how to make all machines clones without going to every machine or relying on contract. 
+%-printing and how students break things more because they aren't really liable.
+%-special labs that don't fit with main labs.
+%-Documentation lacking or scattered
+%-Handling of student files and media. 
+%-Limited staff (common problem in IT)
 
 %Doesn't help. Mention very briefly in case study but note that this is a management issue not a technical one.
-\subsection{Limited Faculty Testing}
-One of the main difficulties we face is a lack of faculty feedback during the architectural phase of lab builds.  Requests for changes pre-build come sparingly from a small handful of faculty.  Most faculty will wait until a week before the semester starts before making change or update requests.  Some of them will even wait until the semester starts.
+%\subsection{Limited Faculty Testing}
+%One of the main difficulties we face is a lack of faculty feedback during the architectural phase of lab builds.  Requests for changes pre-build come sparingly from a small handful of faculty.  Most faculty will wait until a week before the semester starts before making change or update requests.  Some of them will even wait until the semester starts.
 
-We understand the various reasons why this may occur.  Most faculty are not paid during the summer months and are, therefore, under no obligation to work.  However, those faculty wishing to avoid this conflict at the beginning of the semester, need only submit requests at the end of the previous semester.  Part-time faculty members face the dilemma of receiving their schedules a few days before or the week of start of term.  Tenured faculty, however, have no set penalties for postponing their lesson planning.  
+%We understand the various reasons why this may occur.  Most faculty are not paid during the summer months and are, therefore, under no obligation to work.  However, those faculty wishing to avoid this conflict at the beginning of the semester, need only submit requests at the end of the previous semester.  Part-time faculty members face the dilemma of receiving their schedules a few days before or the week of start of term.  Tenured faculty, however, have no set penalties for postponing their lesson planning.  
 
-Furthermore, this is a problem for us technicians because it limits the amount of testing we can perform on our lab images.  Oftentimes, we lack the knowledge base to test software needed for classes.  We research as much as we can and hope that our constricted knowledge is enough.  While we have a relatively fast lab cloning procedure to recreate the labs in the event of an emergency when the semester starts, in many cases, we must ignore requests from faculty members until the next iteration of the lab images are created for the following semester. 
+%Furthermore, this is a problem for us technicians because it limits the amount of testing we can perform on our lab images.  Oftentimes, we lack the knowledge base to test software needed for classes.  We research as much as we can and hope that our constricted knowledge is enough.  While we have a relatively fast lab cloning procedure to recreate the labs in the event of an emergency when the semester starts, in many cases, we must ignore requests from faculty members until the next iteration of the lab images are created for the following semester. 
 
 %doesn't help
-\subsection{Staff and Faculty Turnover}
-In addition to limited faculty testing, we also face a high turnover of faculty.  Part-time lecturers do not stay if their student generated reviews are poor.  Student reviews not only reflect student approval, but also faculty endorsement.  The fast  turnaround, therefore often leaves us technicians with an incomplete faculty list.  Incomplete faculty lists often poses a problem.  We often run into problems where part time staff will not have user accounts to log into our workstations.  Without official verification details, we cannot grant them access to our accounts.  This will cause delays in courses that require lab components. 
+%\subsection{Staff and Faculty Turnover}
+%In addition to limited faculty testing, we also face a high turnover of faculty.  Part-time lecturers do not stay if their student generated reviews are poor.  Student reviews not only reflect student approval, but also faculty endorsement.  The fast  turnaround, therefore often leaves us technicians with an incomplete faculty list.  Incomplete faculty lists often poses a problem.  We often run into problems where part time staff will not have user accounts to log into our workstations.  Without official verification details, we cannot grant them access to our accounts.  This will cause delays in courses that require lab components. 
 
 %Move to intro to case study
-\subsection{Mixed Environment}
-The fourth floor of the Engineering and Computer Science (ECS) building is dedicated to our labs.  We have 3 Linux labs of 30 workstations each, 4 Microsoft Windows labs of 30 workstations each, an Apple iMac lab of 25 workstations, and several specialty labs.  Operating systems on these workstations are very different from each another.  This requires experience in many areas and maintenance is virtually impossible for a single technician to accomplish alone.  The servers that support the labs are also running different operating systems and require separate levels of experience as well. 
+%\subsection{Mixed Environment}
+%The fourth floor of the Engineering and Computer Science (ECS) building is dedicated to our labs.  We have 3 Linux labs of 30 workstations each, 4 Microsoft Windows labs of 30 workstations each, an Apple iMac lab of 25 workstations, and several specialty labs.  Operating systems on these workstations are very different from each another.  This requires experience in many areas and maintenance is virtually impossible for a single technician to accomplish alone.  The servers that support the labs are also running different operating systems and require separate levels of experience as well. 
 
-%This doesn't really apply. 
-\subsection{Frequent Software Updates}
-There are numerous pieces of software to install and maintain on our workstations.  We create master lab images for each platform and deploy them through a cloning procedure.  Maintenance of these master images is time consuming as there are frequent software updates as well as operating system updates.  Updates while courses are being taught are risky because they have the potential to break some software feature that instructors need to teach. 
+%handled above
+%\subsection{Frequent Software Updates}
+%There are numerous pieces of software to install and maintain on our workstations.  We create master lab images for each platform and deploy them through a cloning procedure.  Maintenance of these master images is time consuming as there are frequent software updates as well as operating system updates.  Updates while courses are being taught are risky because they have the potential to break some software feature that instructors need to teach. 
 
-%reword as a common issue in IT industry but is often un
-\subsection{Limited Staff}
-We have a limited amount of technicians available to us.  This is not uncommon in academia or in industry.  Information Technology (IT) departments are often kept lean because they are seen as an expense.  This results in limits to how much work can be done and how many technicians are available to support a number of workstations.  We improve this situation through automation, but there is only so much we can automate.  Often, we have to postpone needed updates and feature requests until we have enough resources.
+%reword as a common issue in IT industry but is often unaddressed.
+%\subsection{Limited Staff}
+%We have a limited amount of technicians available to us.  This is not uncommon in academia or in industry.  Information Technology (IT) departments are often kept lean because they are seen as an expense.  This results in limits to how much work can be done and how many technicians are available to support a number of workstations.  We improve this situation through automation, but there is only so much we can automate.  Often, we have to postpone needed updates and feature requests until we have enough resources.
 
 %introduce case study
 
-
+This thesis describes a case study in which I, the author, helped to manage several university lab environments as a technician.  This environment was specifically for purposes of teaching Computer Engineering and Computer Science.  It had most of the IT issues described in addition to some others unique to it.  The case study describes how I, as part of the technical staff responsible, handled the various issues.
