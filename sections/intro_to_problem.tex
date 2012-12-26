@@ -6,13 +6,15 @@ University lab environments have a very different set of problems to manage than
 %-Limiting what students can do while still enabling them to do coursework. 
 %-Limitations to faculty. 
 
-Despite differences, university lab environments and other IT environments share the two largest overall problems.  One of the problems is scalability.  Since IT staff is highly limited as a result of being budgeted as a limited benefit resource, solutions to manage the lab environments must scale to an arbitrary environment size.  A single technician may be able to build and configure a handful of machines in a short amount of time, but university labs rarely consist of only a handful of machines.  Often, classrooms hold dozens of students that must be using each machine separately.  In large education environments, especially those in technical fields or requiring technical tools, the number of machines to manage can be in the hundreds.  To build and maintain all of them one by one quickly becomes impossible without either increasing the staff to a very expensive size or by managing them with a process that scales to large sizes.  
-
-%-crossplatform interoperability. 
-The other main issue facing lab environments is crossplatform interoperability.  Different companies 
 
 %-automation of deployment. how to make all machines clones without going to every machine or relying on contract. 
+Despite differences, university lab environments and other IT environments share the two largest overall problems.  One of the problems is scalability.  Since IT staff is highly limited as a result of being budgeted as a limited benefit resource, solutions to manage the lab environments must scale to an arbitrary environment size.  A single technician may be able to build and configure a handful of machines in a short amount of time, but university labs rarely consist of only a handful of machines.  Often, classrooms hold dozens of students that must be using each machine separately.  In large education environments, especially those in technical fields or requiring technical tools, the number of machines to manage can be in the hundreds.  To build and maintain all of them one by one quickly becomes impossible without either increasing the staff to a very expensive size or by managing them with a process that scales to large sizes.  In most cases, this is handled by a system of automated deployment of a lab master image to a large group of clones. 
+
+%-crossplatform interoperability. 
+The other main issue facing lab environments is crossplatform interoperability.  Different companies build their products very differently.  For example, account and login information is not uniform across Unix and Microsoft Windows platforms.  This means that users must either have two different sets of accounts and passwords, or some solution must be implemented to make these platforms share that information.   Solutions to interoperability vary.  In many cases, third-party tools can be purchased to handle interoperability at a cost.  Many platforms contain built-in tools that can be used although configuration can take a significant amount of time on the part of the technicians.  In some cases, it is impossible for certain features of a platform to correctly interact with other platforms, so workarounds must found or the features can not be used. 
+
 %-printing and how students break things more because they aren't really liable.
+While printing is a common feature managed in IT environments, Universities must manage it differently.  Students will often use much more paper than employees in their courses.  The paper and ink cost can become exceedingly expensive 
 %-special labs that don't fit with main labs.
 %-Documentation lacking or scattered
 %-Handling of student files and media. 
@@ -44,4 +46,4 @@ The other main issue facing lab environments is crossplatform interoperability. 
 
 %introduce case study
 
-This thesis describes a case study in which I, the author, helped to manage several university lab environments as a technician.  This environment was specifically for purposes of teaching Computer Engineering and Computer Science.  It had most of the IT issues described in addition to some others unique to it.  The case study describes how I, as part of the technical staff responsible, handled the various issues.
+This thesis describes a case study in which I, the author, helped to manage several university lab environments as a technician.  This environment is specifically for purposes of teaching Computer Engineering and Computer Science.  It has most of the IT issues described in addition to the problem of more periodic updates for an ever changing course curriculum.  The case study describes how I, as part of the technical staff responsible, handled the various issues.

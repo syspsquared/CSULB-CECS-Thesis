@@ -377,7 +377,7 @@
 %     Re-definition of Numberings
 % --------------------------------------------- 
 
-% Numbering: Eqauations
+% Numbering: Equations
 \@removefromreset{equation}{chapter}  % due to remreset.sty
 \def\theequation{\@arabic\c@equation}
 
