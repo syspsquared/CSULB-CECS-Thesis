@@ -1,0 +1,5 @@
+-fileserver layout
+-Lab room layout
+-ssh push: Foobar to everyone
+-core server layout: brain, heart, charlotte, d*
+-cloning
