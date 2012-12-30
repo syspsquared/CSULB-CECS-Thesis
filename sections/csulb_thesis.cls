@@ -401,6 +401,7 @@
 \@addtoreset{footnote}{chapter}
 
 %%%%%%% ADJUSTABLE %%%%%%%%
+%NATE: set the space between to 8 + one line of 12.
 \setlength\footnotesep{20\p@} %% space between footnotes
 %\setlength\footnotesep{8.4\p@} %% space between footnotes
 \setlength{\skip\footins}{15\p@ \@plus 4\p@ \@minus 2\p@} %% space between main and footnote

@@ -18,7 +18,7 @@ For the purposes of pushing out remote commands, authorized keys are used to pre
   \begin{center}
     \scalebox{0.7}{\includegraphics{../figures/sshpush.png}}
   \end{center}
-  \caption{SSH Remote Command Push}
+  \caption{SSH remote command push.}
   \label{fig:sshpush}
 \end{figure}
 
@@ -27,5 +27,5 @@ Because a password prompt never occurs, SSH can be used to run a command immedia
 \subsection{Push Script}
 Thus, a relatively short script can be written to send commands to all participating servers.  In its simplest form, all this script does is loop through a list of hosts and execute the SSH command on each host.  In some shells, the loop may malfunction if SSH is not run in batch mode to prevent stdin, so care must be taken to remember that argument if using such a Unix shell.  
 
-A more advanced script would fork each SSH command to the background to run commands on hosts in parallel.  This has the potential to overload the push server,\footnote{The push server is most likely to be a fairly old machine} so adding a delay after so many forked commands would help if the CPU is being taxed too much.  A fair amount of CPU cycles are used to negotiate the key exchange and encrypt the traffic.  The other issues that may occur are hosts that hang the SSH session.  This will cause the SSH command process to hang until killed.  Sometimes it can only be killed with signal 9.  If hosts do not seem to be doing this often, it may be fine to overlook and fix them manually after the script is run\footnote{We log the malfunctioning systems and investigate them later.}.  To remedy failed SSH sessions, at the end of the script, we force the script to sleep for a reasonable amount of time then kill all SSH sessions with the ``killall" command.  
+A more advanced script would fork each SSH command to the background to run commands on hosts in parallel.  This has the potential to overload the push server,\footnote{The push server is most likely to be a fairly old machine.} so adding a delay after so many forked commands would help if the CPU is being taxed too much.  A fair amount of CPU cycles are used to negotiate the key exchange and encrypt the traffic.  The other issues that may occur are hosts that hang the SSH session.  This will cause the SSH command process to hang until killed.  Sometimes it can only be killed with signal 9.  If hosts do not seem to be doing this often, it may be fine to overlook and fix them manually after the script is run.\footnote{We log the malfunctioning systems and investigate them later.}  To remedy failed SSH sessions, at the end of the script, we force the script to sleep for a reasonable amount of time then kill all SSH sessions with the ``killall" command.  
 
