@@ -20,7 +20,13 @@ For the purposes of pushing out remote commands, authorized keys are used to pre
   \end{center}
   \caption{SSH remote command push.}
   \label{fig:sshpush}
+\
+\vskip1pt
+\
+\vskip1pt
+\
 \end{figure}
+
 
 Because a password prompt never occurs, SSH can be used to run a command immediately after authentication.  With the use of semicolons and other special shell characters, multiple commands can be run.  Hypothetically, a command to download a script from a webserver can be followed by the command to run that script.  However, each system touched must have their public key accepted by the push server at least once to prevent prompts from occurring during automation.  For clones, it is useful to have all the clones use the same key.  And for subsequent clones, the previous key may be used to prevent SSH from failing due to a key identification mismatch.  This should not be done in highly secure environments though, as it circumvents protection against man in the middle attacks.  
 

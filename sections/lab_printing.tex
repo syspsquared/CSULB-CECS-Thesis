@@ -14,7 +14,7 @@ The first step is choosing which printing system to use.  On Linux, the two choi
 The LPRNG handles network printing without much configuration.  Clients simply have to point to it and send print jobs.  The accounting system requires more configuration.  The CECS accounting system was built in house using the standard TCP/IP stack in Unix.  At its core is the ``paperd" program hosted on one of the core servers.  It holds the master accounting files to keep track of how much paper a user has and how much they have used.  It is run by a dedicated user account, ``prmaster," which also has its own group.  
 
 To credit a user's paper account, an administrator is added to the prmaster group which has the ability to run the modpaper command.  This must be done on the same server that paperd is housed on.  Thus, the administrator must be allowed to login to the core server and be in the prmaster group to edit user paper accounts.  
-
+\vfill\eject
 The clients in the paperd system are the printservers in each lab.  These run LPRNG and service print requests.  As part of LPRNG, the printers have a filter set up to catch who is printing what and forward that information to the master paperd system.  Assuming the user has paper in their paper account, the print job is sent to the printer. This only works if the workstations send the job to a printserver and by default we have them point to the one in the same room. They can point to printservers in other rooms in the event paper or ink runs out. 
 
 \subsection{Printing Issues and Recent Changes}
