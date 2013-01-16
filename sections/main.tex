@@ -164,28 +164,30 @@
 %%\addtocontents{toc}{\protect\contentsline{chapterhead}{\null}{Page}{}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\widowpenalty10000
+\raggedbottom
 
 \clearpage \pagenumbering{arabic}
-%\include{introduction}
-\include{intro_to_problem}
-\include{intro_to_case_study}
-\include{documentation_solution}
-\include{student_faculty_help}
+%\input{introduction}
+\input{intro_to_problem}
+\input{intro_to_case_study}
+\input{documentation_solution}
+\input{student_faculty_help}
 
-\include{printservers}
-\include{filesystem_management}
-\include{lab_printing}
+\input{printservers}
+\input{filesystem_management}
+\input{lab_printing}
 
-\include{lab_image}
-\include{cloning}
+\input{lab_image}
+\input{cloning}
 
-\include{ssh_push_writeup}
-\include{unclogging}
-\include{local_repository}
+\input{ssh_push_writeup}
+\input{unclogging}
+\input{local_repository}
 
-\include{specialty_labs}
-\include{crossplatform}
-\include{conclusion}
+\input{specialty_labs}
+\input{crossplatform}
+\input{conclusion}
 
 
 %These are in a different directory. Hence the input command.
@@ -196,15 +198,15 @@
 \input{../appendices/appendix_restrict}
 \input{../appendices/appendix_special}
 
-%\include{appendix_a} %-Use this to make a thesis office approved TOC, LOF, and LOT
-%\include{appendix_b} %-Use this to make a thesis office approved TOC, LOF, and LOT
-% \include{detailedDescriptionOfTheCircuit}
-% \include{circuitConstruction}
+%\input{appendix_a} %-Use this to make a thesis office approved TOC, LOF, and LOT
+%\input{appendix_b} %-Use this to make a thesis office approved TOC, LOF, and LOT
+% \input{detailedDescriptionOfTheCircuit}
+% \input{circuitConstruction}
 
 %\bibliographystyle{utphys}  % With journal title
 % \bibliographystyle{h-physrev} % No journal title appears
 % \bibliography{papers}
-%\include{bibliography}
+%\input{bibliography}
 \end{document}
 %%                                                            %%
 %%------------- End of Document ------------------------------%%

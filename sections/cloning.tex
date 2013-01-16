@@ -22,6 +22,9 @@ At this point, the system is bootable.  It is not yet configured to be unique th
   \label{fig:RoomNetworkLayout}
 \end{figure}
 
+\
+\vskip1pt
+\ 
 
 \subsection{Cloning Efficiency and Potential Improvements}
 This system is fairly efficient and only requires about 2 hours to clone all three of our labs if cloned in parallel.  The only interaction between the sysadmin and each clone is to run the clone script with the IP address of the machines.  This process could be improved though.  To do so, every workstation needs to have its MAC address copied to the Print Server's DHCP table.  In addition, a copy of this table would need to be available during the netboot since the small netboot image does not usually have a DHCP client.  This would then prevent the need for the sysadmin to enter the address since every machine would be uniquely identified by MAC address.  This can be further automated by broadcasting wakeonlan packets from the Print Servers to the machines to start them.  This would prevent the need for the sysadmin to even enter the lab at all.  

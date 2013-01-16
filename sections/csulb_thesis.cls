@@ -401,7 +401,8 @@
 \@addtoreset{footnote}{chapter}
 
 %%%%%%% ADJUSTABLE %%%%%%%%
-\setlength\footnotesep{8.4\p@} %% space between footnotes
+\setlength\footnotesep{20\p@} %% space between footnotes
+%\setlength\footnotesep{8.4\p@} %% space between footnotes
 \setlength{\skip\footins}{15\p@ \@plus 4\p@ \@minus 2\p@} %% space between main and footnote
 %% === original settings ===
 %%\setlength\footnotesep{8.4\p@}
@@ -724,9 +725,9 @@
             \let\p@enumiv\@empty
             \renewcommand\theenumiv{\@arabic\c@enumiv}} %biblio numbering
       \sloppy
-      \clubpenalty4000
+      \clubpenalty=4000
       \@clubpenalty \clubpenalty
-      \widowpenalty4000%
+      \widowpenalty=4000
       \sfcode`\.\@m}
      {\def\@noitemerr
        {\@latex@warning{Empty `thebibliography' environment}}%
